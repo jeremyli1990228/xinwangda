@@ -25,7 +25,7 @@ export const newsData: NewsData = {
     time: '2023.03.06 15:26',
     summary:
       'ESG公司最近进行的一项调查发现，很多组织正在积极地使用基于云计算的方案来替代内部部署安全分析和运营技术。',
-    image: '/news-building.jpg'
+    image: 'news-building.jpg'
   },
   list: [
     { id: 'nw1', day: '22', month: '2020.06', title: '7个引人注目的创新物联网应用', summary },

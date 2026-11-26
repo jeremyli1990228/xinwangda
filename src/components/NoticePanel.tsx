@@ -18,7 +18,10 @@ export default function NoticePanel() {
   const { openDetail, notify } = useUi()
 
   const list = items.filter((i) => i.type === tab)
-  const unread = items.filter((i) => i.type === 'alert' && i.unread).length
+  const counts = noticeTabs.reduce<Record<NoticeType, number>>((acc, t) => {
+    acc[t.id] = items.filter((i) => i.type === t.id).length
+    return acc
+  }, { alert: 0, remind: 0, inspect: 0, workorder: 0 })
 
   const open = (n: NoticeItem) => {
     openDetail({
@@ -50,8 +53,7 @@ export default function NoticePanel() {
             onClick={() => setTab(t.id)}
           >
             {t.label}
-            {t.dot && <i className="tabs__dot" />}
-            {t.id === 'alert' && unread > 0 && <i className="badge-num">{unread}</i>}
+            <span className="tabs__count">({counts[t.id]})</span>
           </button>
         ))}
       </div>

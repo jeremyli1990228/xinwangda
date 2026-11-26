@@ -6,8 +6,8 @@ import './TopBar.css'
 const navs = [
   { id: 'screen', label: '运营大屏' },
   { id: 'biz', label: '业务中心' },
-  { id: 'iot', label: '物联中心', badge: 3 },
-  { id: 'data', label: '数据资产中心', badge: 4 }
+  { id: 'iot', label: '物联中心' },
+  { id: 'data', label: '数据资产中心' }
 ]
 
 const parks = ['石龙仔园区', '龙华园区', '惠州博罗园区', '南京溧水园区']
@@ -62,7 +62,6 @@ export default function TopBar() {
             onClick={() => switchNav(n.id)}
           >
             {n.label}
-            {n.badge && <i className="nav__badge">{n.badge}</i>}
           </button>
         ))}
       </nav>

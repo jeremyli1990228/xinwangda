@@ -206,13 +206,6 @@ dd {
   background: var(--brand);
 }
 
-.tabs__dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #f08a4b;
-}
-
 .tabs__count {
   font-size: 13px;
   color: #8a94a5;

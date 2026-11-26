@@ -119,23 +119,6 @@
   background: rgba(255, 255, 255, 0.14);
 }
 
-.nav__badge {
-  position: absolute;
-  top: 16px;
-  right: 12px;
-  min-width: 16px;
-  height: 16px;
-  padding: 0 3px;
-  border-radius: 2px;
-  background: #f7e14a;
-  color: #4c3f00;
-  font-size: 10px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 16px;
-  text-align: center;
-}
-
 /* right */
 .topbar__right {
   display: flex;

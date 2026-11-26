@@ -23,7 +23,14 @@ export default function NewsBoard() {
       title="动态信息"
       watermark={Newspaper}
       className="news-panel"
-      extra={<span className="news-new">NEW</span>}
+      extra={
+        <>
+          <span className="news-new">NEW</span>
+          <button className="news-more" onClick={() => notify('正在跳转资讯列表…')}>
+            更多
+          </button>
+        </>
+      }
     >
       <div className="news-body">
         <article className="news-feature" onClick={openFeatured}>
@@ -66,10 +73,6 @@ export default function NewsBoard() {
               <ChevronRight className="news-item__arrow" size={16} />
             </button>
           ))}
-          <button className="news-more" onClick={() => notify('正在跳转资讯列表…')}>
-            更多资讯动态
-            <ChevronRight size={13} />
-          </button>
         </div>
       </div>
     </Panel>

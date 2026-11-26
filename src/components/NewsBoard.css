@@ -6,14 +6,36 @@
 .news-new {
   display: inline-flex;
   align-items: center;
-  height: 18px;
-  padding: 0 6px;
-  border-radius: 2px;
-  background: #ee4d3f;
+  height: 16px;
+  padding: 0 5px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #f2624f, #ea4a37);
   color: #fff;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 700;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px;
+}
+
+/* NEW 紧跟标题，更多按钮对齐标题行最右 */
+.news-panel .panel-extra {
+  flex: 1;
+  gap: 10px;
+}
+
+.news-more {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  border: 0;
+  background: transparent;
+  color: #8a94a5;
+  font-size: 12px;
+  cursor: pointer;
+  transition: color 0.16s;
+}
+
+.news-more:hover {
+  color: var(--brand);
 }
 
 .news-body {
@@ -114,7 +136,6 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
-  padding-bottom: 22px;
 }
 
 .news-item {
@@ -199,24 +220,6 @@
 .news-item:hover .news-item__arrow {
   color: var(--brand);
   transform: translateX(2px);
-}
-
-.news-more {
-  position: absolute;
-  right: 2px;
-  bottom: 2px;
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
-  border: 0;
-  background: transparent;
-  color: #6b778c;
-  font-size: 12px;
-  cursor: pointer;
-}
-
-.news-more:hover {
-  color: var(--brand);
 }
 
 /* 视口较矮时收紧摘要，保证三条资讯完整可见 */

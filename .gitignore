@@ -4,5 +4,6 @@ dist
 .qa
 .screenshots
 .trae-html-share-packages
+欣旺达首页原型.html
 *.local
 .DS_Store

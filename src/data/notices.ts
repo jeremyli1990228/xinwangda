@@ -9,10 +9,10 @@ export interface NoticeItem {
   unread: boolean
 }
 
-export const noticeTabs: { id: NoticeType; label: string; dot?: boolean; badge?: number }[] = [
-  { id: 'alert', label: '告警通知', badge: 5 },
-  { id: 'remind', label: '提醒通知', dot: true },
-  { id: 'inspect', label: '巡检通知', dot: true },
+export const noticeTabs: { id: NoticeType; label: string }[] = [
+  { id: 'alert', label: '告警通知' },
+  { id: 'remind', label: '提醒通知' },
+  { id: 'inspect', label: '巡检通知' },
   { id: 'workorder', label: '工单通知' }
 ]
 

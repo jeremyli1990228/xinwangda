@@ -220,6 +220,14 @@
 }
 
 /* 视口较矮时收紧摘要，保证三条资讯完整可见 */
+@media (max-height: 820px) {
+  .news-feature__tag,
+  .news-feature__overlay p,
+  .news-item__main p {
+    display: none;
+  }
+}
+
 @media (max-height: 980px) {
   .news-item__main p {
     -webkit-line-clamp: 1;

@@ -80,14 +80,27 @@ dd {
   gap: var(--gap);
 }
 
+/* 741~820 高度（如 1366×768 笔记本）：压缩顶栏与留白，保证一屏完整 */
+@media (max-height: 820px) and (min-height: 741px) {
+  :root {
+    --header-h: 64px;
+  }
+  .layout {
+    padding: 8px 10px 10px;
+  }
+  .panel-head {
+    height: 44px;
+  }
+}
+
 /* 视口过矮时允许整页滚动，避免面板内容被压扁裁切 */
-@media (max-height: 820px) {
+@media (max-height: 740px) {
   body {
     overflow: auto;
   }
   .layout {
     height: auto;
-    min-height: 800px;
+    min-height: 740px;
   }
 }
 

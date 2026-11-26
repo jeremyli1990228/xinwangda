@@ -44,7 +44,16 @@ export default function NoticePanel() {
   }
 
   return (
-    <Panel title="我的通知" watermark={Bell} className="notice-panel">
+    <Panel
+      title="我的通知"
+      watermark={Bell}
+      className="notice-panel"
+      extra={
+        <button className="panel-more" onClick={() => notify('正在打开全部通知…')}>
+          更多
+        </button>
+      }
+    >
       <div className="tabs">
         {noticeTabs.map((t) => (
           <button

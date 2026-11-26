@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Bell, ChevronDown, CloudSun, House, MapPin, Volume2 } from 'lucide-react'
+import { Bell, ChevronDown, CloudSun, House, MapPin } from 'lucide-react'
 import { useUi } from '../ui/UiProvider'
 import './TopBar.css'
 
@@ -101,10 +101,6 @@ export default function TopBar() {
         <span className="tb-date">2023年7月8日</span>
 
         <div className="icon-btns">
-          <button className="icon-btn" title="语音播报" onClick={() => notify('语音播报已开启')}>
-            <Volume2 size={17} />
-            <i className="icon-badge">1</i>
-          </button>
           <button
             className="icon-btn"
             title="消息通知"

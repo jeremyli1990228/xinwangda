@@ -50,7 +50,16 @@ export default function TodoPanel() {
   }
 
   return (
-    <Panel title="我的待办" watermark={ClipboardCheck} className="todo-panel">
+    <Panel
+      title="我的待办"
+      watermark={ClipboardCheck}
+      className="todo-panel"
+      extra={
+        <button className="panel-more" onClick={() => notify('正在打开全部待办…')}>
+          更多
+        </button>
+      }
+    >
       <div className="tabs">
         {todoTabs.map((t) => (
           <button

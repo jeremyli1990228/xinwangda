@@ -161,6 +161,19 @@ dd {
   gap: 8px;
 }
 
+.panel-more {
+  border: 0;
+  background: transparent;
+  color: #8a94a5;
+  font-size: 12px;
+  cursor: pointer;
+  transition: color 0.16s;
+}
+
+.panel-more:hover {
+  color: var(--brand);
+}
+
 /* ---------- 标签页 ---------- */
 .tabs {
   flex: none;

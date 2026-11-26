@@ -1,5 +1,5 @@
 .apps-panel {
-  flex: 2.05 1 0;
+  flex: 1.8 1 0;
   min-height: 0;
   /* 随视口高度自适应，保证一屏完整展示 */
   --ico-lg: clamp(42px, 4.9vh, 56px);
@@ -120,14 +120,14 @@
 
 /* 马赛克内尺寸以容器高度为基准，保证压缩后分组不重叠 */
 .apps-page--mosaic .app-group {
-  --ico-lg: clamp(34px, 9.2cqh, 56px);
-  --ico-flat: clamp(24px, 7.2cqh, 48px);
+  --ico-lg: clamp(34px, 9.2cqh, 72px);
+  --ico-flat: clamp(24px, 7.2cqh, 66px);
   --ico-sm: clamp(20px, 7.2cqh, 42px);
-  --name-lg: clamp(10px, 2.6cqh, 13.5px);
+  --name-lg: clamp(10px, 2.6cqh, 18px);
   --name-sm: clamp(8px, 2.05cqh, 11px);
   --grp-pt: clamp(14px, 4.8cqh, 26px);
-  --item-gap: clamp(4px, 1.6cqh, 9px);
-  --row-gap: clamp(4px, 1.9cqh, 10px);
+  --item-gap: clamp(4px, 1.6cqh, 12px);
+  --row-gap: clamp(4px, 1.9cqh, 12px);
 }
 
 /* 等分布局页 */
@@ -196,7 +196,7 @@
   flex: 1;
   display: grid;
   gap: var(--row-gap, 10px) 4px;
-  align-content: start;
+  align-content: center;
   justify-items: center;
 }
 
@@ -241,7 +241,7 @@
 }
 
 .app-item__name {
-  max-width: 84px;
+  max-width: 8em;
   color: #3a4353;
   font-size: var(--name-lg);
   line-height: 1.35;
@@ -303,6 +303,17 @@
 .app-group.is-compact {
   padding-top: calc(var(--grp-pt) - 4px);
   padding-bottom: 2px;
+}
+
+/* 应用较少的分组：放大图标与间距，保持卡片饱满 */
+.apps-page--mosaic .app-group.is-roomy {
+  --ico-lg: clamp(40px, 12.6cqh, 96px);
+  --ico-flat: clamp(32px, 10.5cqh, 76px);
+  --item-gap: clamp(5px, 2.2cqh, 18px);
+}
+
+.apps-page--mosaic .app-group.is-roomy .app-group__grid {
+  gap: 0;
 }
 
 /* 左右箭头 */

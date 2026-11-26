@@ -1,4 +1,4 @@
-import { Clock, Newspaper } from 'lucide-react'
+import { Clock, Newspaper, ChevronRight } from 'lucide-react'
 import Panel from './Panel'
 import { newsData } from '../data/news'
 import { useUi } from '../ui/UiProvider'
@@ -27,16 +27,16 @@ export default function NewsBoard() {
     >
       <div className="news-body">
         <article className="news-feature" onClick={openFeatured}>
-          <div className="news-feature__img">
-            <img src={featured.image} alt={featured.title} />
-          </div>
-          <div className="news-feature__info">
+          <img className="news-feature__bg" src={featured.image} alt={featured.title} />
+          <span className="news-feature__shade" />
+          <div className="news-feature__overlay">
+            <span className="news-feature__tag">园区要闻</span>
             <h3>{featured.title}</h3>
+            <p>{featured.summary}</p>
             <span className="news-feature__time">
               <Clock size={12} />
               {featured.time}
             </span>
-            <p>{featured.summary}</p>
           </div>
         </article>
 
@@ -63,10 +63,12 @@ export default function NewsBoard() {
                 <h4>{n.title}</h4>
                 <p>{n.summary}</p>
               </span>
+              <ChevronRight className="news-item__arrow" size={16} />
             </button>
           ))}
           <button className="news-more" onClick={() => notify('正在跳转资讯列表…')}>
             更多资讯动态
+            <ChevronRight size={13} />
           </button>
         </div>
       </div>

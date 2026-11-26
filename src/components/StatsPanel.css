@@ -21,8 +21,8 @@
 
 .ring {
   position: relative;
-  width: clamp(96px, 14.6vh, 118px);
-  height: clamp(96px, 14.6vh, 118px);
+  width: clamp(96px, 11vh, 150px);
+  height: clamp(96px, 11vh, 150px);
 }
 
 .ring svg {

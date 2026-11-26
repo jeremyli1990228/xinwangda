@@ -6,18 +6,20 @@ import { appCategories, type AppGroup, type AppItem } from '../data/apps'
 import { useUi } from '../ui/UiProvider'
 import './MyApps.css'
 
-function AppButton({ app, compact }: { app: AppItem; compact?: boolean }) {
+function AppButton({ app, compact, roomy }: { app: AppItem; compact?: boolean; roomy?: boolean }) {
   const { notify } = useUi()
   const Icon = iconMap[app.icon] ?? LayoutGrid
+  const icoSize = compact ? 19 : roomy ? 34 : 25
+  const flatSize = compact ? 24 : roomy ? 40 : 30
   return (
     <button className="app-item" title={app.name} onClick={() => notify(`正在打开「${app.name}」…`)}>
       {app.flat ? (
         <span className="app-item__flat">
-          <Icon size={compact ? 24 : 30} strokeWidth={1.7} />
+          <Icon size={flatSize} strokeWidth={1.7} />
         </span>
       ) : (
         <span className={`app-item__ico ico-${app.tone ?? 'blue'}`}>
-          <Icon size={compact ? 19 : 25} strokeWidth={1.9} />
+          <Icon size={icoSize} strokeWidth={1.9} />
         </span>
       )}
       <span className="app-item__name">{app.name}</span>
@@ -35,15 +37,18 @@ function GroupCard({ group, useArea }: { group: AppGroup; useArea: boolean }) {
       }
     : undefined
 
+  // 应用数较少的分组放大图标与间距，避免卡片大面积留白
+  const roomy = useArea && !group.compact && group.apps.length <= 3
+
   return (
-    <div className={`app-group${group.compact ? ' is-compact' : ''}`} style={style}>
+    <div className={`app-group${group.compact ? ' is-compact' : ''}${roomy ? ' is-roomy' : ''}`} style={style}>
       <span className={`app-group__label tone-${group.tone}`}>{group.title}</span>
       <div
         className="app-group__grid"
         style={{ gridTemplateColumns: `repeat(${group.cols}, minmax(0, 1fr))` }}
       >
         {group.apps.map((app) => (
-          <AppButton key={app.id} app={app} compact={group.compact} />
+          <AppButton key={app.id} app={app} compact={group.compact} roomy={roomy} />
         ))}
       </div>
     </div>

@@ -40,8 +40,8 @@ const mosaicBiz: AppPage = {
       id: 'g-operate',
       title: '智慧运营',
       tone: 'lime',
-      cols: 2,
-      area: { x: 0, y: 0, w: 32.4, h: 57.6 },
+      cols: 3,
+      area: { x: 0, y: 0, w: 32.4, h: 47.9 },
       apps: [
         { id: 'a1', name: '综合管理', icon: 'monitor', tone: 'blue' },
         { id: 'a2', name: '领导驾驶舱', icon: 'chat', tone: 'orange' },
@@ -55,7 +55,7 @@ const mosaicBiz: AppPage = {
       title: '智慧办公',
       tone: 'yellow',
       cols: 3,
-      area: { x: 34.2, y: 0.4, w: 27.6, h: 29.2 },
+      area: { x: 34.2, y: 0.4, w: 27.6, h: 47.5 },
       apps: [
         { id: 'b1', name: '考勤机管理', icon: 'landmark', tone: 'gray', flat: true },
         { id: 'b2', name: '环境管理', icon: 'pencil', tone: 'gray', flat: true },
@@ -66,9 +66,8 @@ const mosaicBiz: AppPage = {
       id: 'g-service',
       title: '智慧服务',
       tone: 'blue',
-      cols: 2,
-      compact: true,
-      area: { x: 63.6, y: 0.4, w: 36.4, h: 39.4 },
+      cols: 3,
+      area: { x: 63.6, y: 0.4, w: 36.4, h: 47.5 },
       apps: [
         { id: 'c1', name: '智慧食堂', icon: 'utensils', tone: 'blue' },
         { id: 'c2', name: '智慧宿舍', icon: 'bed', tone: 'gold' },
@@ -83,7 +82,7 @@ const mosaicBiz: AppPage = {
       title: '数智安全',
       tone: 'orange',
       cols: 3,
-      area: { x: 0, y: 58.4, w: 32.4, h: 41.2 },
+      area: { x: 0, y: 50.3, w: 32.4, h: 47.9 },
       apps: [
         { id: 'd1', name: '智慧安防', icon: 'shield', tone: 'blue' },
         { id: 'd2', name: '智慧巡更', icon: 'footprints', tone: 'orange' },
@@ -95,7 +94,7 @@ const mosaicBiz: AppPage = {
       title: '绿色低碳',
       tone: 'green',
       cols: 3,
-      area: { x: 34.2, y: 31.2, w: 27.6, h: 68.4 },
+      area: { x: 34.2, y: 50.3, w: 27.6, h: 47.9 },
       apps: [
         { id: 'e1', name: '碳排管理', icon: 'cog', tone: 'gray', flat: true },
         { id: 'e2', name: '智慧环境', icon: 'users', tone: 'gray', flat: true },
@@ -106,8 +105,8 @@ const mosaicBiz: AppPage = {
       id: 'g-pass',
       title: '智慧通行',
       tone: 'royal',
-      cols: 2,
-      area: { x: 63.6, y: 41.5, w: 36.4, h: 58.1 },
+      cols: 3,
+      area: { x: 63.6, y: 50.3, w: 36.4, h: 47.9 },
       apps: [
         { id: 'f1', name: '人员', icon: 'users', tone: 'mint' },
         { id: 'f2', name: '物流', icon: 'truck', tone: 'blue' }

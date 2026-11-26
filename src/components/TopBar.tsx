@@ -42,10 +42,7 @@ export default function TopBar() {
   return (
     <header className="topbar" ref={barRef}>
       <div className="brand">
-        <div className="brand__mark">
-          <span className="brand__en">SUNWODA</span>
-          <span className="brand__cn">欣旺达</span>
-        </div>
+        <img className="brand__logo" src="logo1.png" alt="SUNWODA 欣旺达" />
         <i className="brand__divide" />
         <h1 className="brand__title">智慧园区综合管理平台</h1>
       </div>

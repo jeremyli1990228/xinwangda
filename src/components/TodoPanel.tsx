@@ -60,7 +60,6 @@ export default function TodoPanel() {
           >
             {t.label}
             <span className="tabs__count">({t.count})</span>
-            {t.badge && <i className="badge-num">{t.badge}</i>}
           </button>
         ))}
       </div>

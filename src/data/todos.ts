@@ -13,11 +13,11 @@ export interface TodoItem {
   desc: string
 }
 
-export const todoTabs: { id: 'all' | TodoType; label: string; count: number; badge?: number }[] = [
+export const todoTabs: { id: 'all' | TodoType; label: string; count: number }[] = [
   { id: 'all', label: '全部待办', count: 12 },
-  { id: 'alert', label: '告警待办', count: 5, badge: 2 },
-  { id: 'workorder', label: '工单待办', count: 5, badge: 3 },
-  { id: 'audit', label: '待我审核', count: 5, badge: 6 }
+  { id: 'alert', label: '告警待办', count: 5 },
+  { id: 'workorder', label: '工单待办', count: 5 },
+  { id: 'audit', label: '待我审核', count: 5 }
 ]
 
 export const todoItems: TodoItem[] = [

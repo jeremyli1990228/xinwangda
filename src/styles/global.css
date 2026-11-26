@@ -215,28 +215,6 @@ dd {
   color: var(--brand);
 }
 
-.badge-num {
-  position: absolute;
-  top: -1px;
-  right: -2px;
-  min-width: 15px;
-  height: 15px;
-  padding: 0 3px;
-  border-radius: 2px;
-  background: #f7e14a;
-  color: #594b00;
-  font-size: 10px;
-  font-weight: 700;
-  line-height: 15px;
-  text-align: center;
-}
-
-.badge-num--bolt::before {
-  content: '⚡';
-  font-size: 9px;
-  margin-right: 1px;
-}
-
 /* ---------- 滚动条 ---------- */
 .scroll-y {
   overflow-y: auto;

@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from 'node:fs'
+import { readFileSync, writeFileSync, readdirSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -19,10 +19,20 @@ const cssPath = resolve(dist, cssTag[1].replace(/^\.\//, ''))
 let js = readFileSync(jsPath, 'utf8')
 const css = readFileSync(cssPath, 'utf8')
 
-// 将资讯配图内联为 base64，使单个 HTML 文件离线也能完整显示
-const image = readFileSync(resolve(root, 'public/news-building.jpg'))
-const imageUri = `data:image/jpeg;base64,${image.toString('base64')}`
-js = js.split('news-building.jpg').join(imageUri)
+// 将 public 下的图片资源内联为 base64，使单个 HTML 文件离线也能完整显示
+const mime = {
+  '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.png': 'image/png',
+  '.svg': 'image/svg+xml',
+  '.webp': 'image/webp'
+}
+for (const file of readdirSync(resolve(root, 'public'))) {
+  const ext = file.slice(file.lastIndexOf('.')).toLowerCase()
+  if (!mime[ext]) continue
+  const data = readFileSync(resolve(root, 'public', file))
+  js = js.split(file).join(`data:${mime[ext]};base64,${data.toString('base64')}`)
+}
 
 // 内联脚本中若出现 </script 会被提前闭合，需转义
 if (/<\/script/i.test(js)) {

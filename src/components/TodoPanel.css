@@ -1,0 +1,79 @@
+.todo-panel {
+  flex: 1.18 1 0;
+  min-height: 0;
+}
+
+.todo-list {
+  flex: 1;
+  min-height: 0;
+  padding: 0 8px 6px 12px;
+  -webkit-mask-image: linear-gradient(180deg, #000 calc(100% - 22px), rgba(0, 0, 0, 0.1) 100%);
+  mask-image: linear-gradient(180deg, #000 calc(100% - 22px), rgba(0, 0, 0, 0.1) 100%);
+}
+
+.todo-item {
+  display: block;
+  width: 100%;
+  padding: 11px 6px 10px 2px;
+  border: 0;
+  border-bottom: 1px solid #eef1f6;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.14s;
+}
+
+.todo-item:hover {
+  background: #f7faff;
+}
+
+.todo-item:last-child {
+  border-bottom: 0;
+}
+
+.todo-item__row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.todo-item__row h4 {
+  flex: 1;
+  min-width: 0;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pill--warn {
+  background: #fff3e2;
+  color: #e08a2a;
+}
+
+.todo-item__meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 7px;
+  padding-left: 2px;
+  font-size: 12px;
+  color: #98a2b1;
+}
+
+.todo-item__meta .is-danger {
+  color: #e8564a;
+}
+
+.todo-item__meta .is-over {
+  color: #9aa4b4;
+}
+
+.todo-empty {
+  padding: 60px 0;
+  text-align: center;
+  color: var(--text-3);
+  font-size: 13px;
+}

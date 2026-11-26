@@ -1,0 +1,8 @@
+node_modules
+dist
+.tmp
+.qa
+.screenshots
+.trae-html-share-packages
+*.local
+.DS_Store

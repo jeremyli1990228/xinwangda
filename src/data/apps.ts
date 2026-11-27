@@ -310,7 +310,7 @@ export const screenModeC: AppGroup[] = [
     id: 'sc-control',
     title: '参观大屏控制端',
     tone: 'blue',
-    cols: 2,
+    cols: 3,
     apps: [
       { id: 'sc1', name: '安全', icon: 'monitorCog', tone: 'blue' },
       { id: 'sc2', name: '通行', icon: 'truck', tone: 'teal' },
@@ -324,7 +324,7 @@ export const screenModeC: AppGroup[] = [
     id: 'sc-manage',
     title: '参观大屏管理端',
     tone: 'royal',
-    cols: 2,
+    cols: 3,
     apps: [
       { id: 'sc7', name: '策略管理', icon: 'clipboard', tone: 'blue' },
       { id: 'sc8', name: '视频通道同步', icon: 'monitorPlay', tone: 'teal' },
@@ -337,7 +337,7 @@ export const screenModeC: AppGroup[] = [
     id: 'sc-show',
     title: '参观大屏展示端',
     tone: 'green',
-    cols: 2,
+    cols: 3,
     apps: [
       { id: 'sc12', name: '参观大屏展示端', icon: 'monitor', tone: 'blue' },
       { id: 'sc13', name: 'PAD展示端', icon: 'presentation', tone: 'teal' }

@@ -218,6 +218,11 @@ html[data-ver='v2'] .apps-add:hover {
 }
 
 /* 运营大屏 B 端 / C 端模式切换 */
+html[data-ver='v2'] .apps-mode {
+  padding: 0 16px 4px;
+  margin-top: -4px;
+}
+
 html[data-ver='v2'] .mode-switch {
   border-color: #e2ecff;
   background: #eef4ff;

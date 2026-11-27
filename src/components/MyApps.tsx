@@ -127,36 +127,36 @@ export default function MyApps() {
       watermark={LayoutGrid}
       className="apps-panel"
       extra={
-        <>
-          {category.id === 'screen' && (
-            <div className="mode-switch" role="group" aria-label="运营大屏模式">
-              <button
-                className={`mode-switch__item${mode === 'b' ? ' is-active' : ''}`}
-                onClick={() => {
-                  setMode('b')
-                  setPage(0)
-                }}
-              >
-                B端管理模式
-              </button>
-              <button
-                className={`mode-switch__item${mode === 'c' ? ' is-active' : ''}`}
-                onClick={() => {
-                  setMode('c')
-                  setPage(0)
-                }}
-              >
-                C端参考模式
-              </button>
-            </div>
-          )}
-          <button className="apps-add" title="管理我的应用" onClick={() => setConfigOpen(true)}>
-            <Settings2 size={14} strokeWidth={1.9} />
-            <span>管理</span>
-          </button>
-        </>
+        <button className="apps-add" title="管理我的应用" onClick={() => setConfigOpen(true)}>
+          <Settings2 size={14} strokeWidth={1.9} />
+          <span>管理</span>
+        </button>
       }
     >
+      {category.id === 'screen' && (
+        <div className="apps-mode">
+          <div className="mode-switch" role="group" aria-label="运营大屏模式">
+            <button
+              className={`mode-switch__item${mode === 'b' ? ' is-active' : ''}`}
+              onClick={() => {
+                setMode('b')
+                setPage(0)
+              }}
+            >
+              B端管理模式
+            </button>
+            <button
+              className={`mode-switch__item${mode === 'c' ? ' is-active' : ''}`}
+              onClick={() => {
+                setMode('c')
+                setPage(0)
+              }}
+            >
+              C端参考模式
+            </button>
+          </div>
+        </div>
+      )}
       <div className="apps-body">
         <div className="cat-tabs">
           {appCategories.map((c) => (

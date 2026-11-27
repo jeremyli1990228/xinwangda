@@ -37,7 +37,15 @@
   color: var(--brand);
 }
 
-/* 「运营大屏」B 端 / C 端模式切换 */
+/* 「运营大屏」B 端 / C 端模式切换：独立一行，不与标题同行 */
+.apps-mode {
+  flex: none;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 16px 2px;
+  margin-top: -2px;
+}
+
 .mode-switch {
   display: inline-flex;
   align-items: center;

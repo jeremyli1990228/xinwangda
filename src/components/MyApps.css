@@ -449,3 +449,15 @@
   text-overflow: clip;
   word-break: break-all;
 }
+
+/* 窄屏下适度收紧应用图标与名称，避免四字名称被拆行 */
+@media (max-width: 1200px) {
+  .apps-page--grid .app-group {
+    --ico-lg: 22px;
+    --ico-sm: 18px;
+    --name-lg: 9.5px;
+    --name-sm: 9px;
+    --item-gap: 3px;
+    --row-gap: 4px;
+  }
+}

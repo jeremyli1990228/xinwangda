@@ -156,7 +156,6 @@ const mosaicBiz: AppPage = {
       title: '智慧运营',
       tone: 'lime',
       cols: 3,
-      compact: true,
       area: { x: 0, y: 0, w: 32.4, h: 47.9 },
       apps: [
         { id: 'a1', name: '硬件管理', icon: 'server', tone: 'blue' },
@@ -171,7 +170,6 @@ const mosaicBiz: AppPage = {
       title: '智慧办公',
       tone: 'yellow',
       cols: 3,
-      compact: true,
       area: { x: 34.2, y: 0.4, w: 27.6, h: 47.5 },
       apps: [
         { id: 'b1', name: '考勤机管理', icon: 'landmark', tone: 'orange' },
@@ -185,8 +183,7 @@ const mosaicBiz: AppPage = {
       id: 'g-service',
       title: '智慧服务',
       tone: 'blue',
-      cols: 3,
-      compact: true,
+      cols: 4,
       area: { x: 63.6, y: 0.4, w: 36.4, h: 47.5 },
       apps: [
         { id: 'c1', name: '智慧食堂', icon: 'utensils', tone: 'blue' },
@@ -203,7 +200,6 @@ const mosaicBiz: AppPage = {
       title: '数智安全',
       tone: 'royal',
       cols: 3,
-      compact: true,
       area: { x: 0, y: 58.4, w: 32.4, h: 41.2 },
       apps: [
         { id: 'd1', name: '智慧安防', icon: 'shield', tone: 'blue' },
@@ -219,7 +215,6 @@ const mosaicBiz: AppPage = {
       title: '绿色低碳',
       tone: 'green',
       cols: 3,
-      compact: true,
       area: { x: 34.2, y: 58.8, w: 27.6, h: 40.8 },
       apps: [
         { id: 'e1', name: '碳排放管理', icon: 'leaf', tone: 'green' },
@@ -255,7 +250,6 @@ const bizPage2: AppPage = {
       title: '人脸识别',
       tone: 'blue',
       cols: 4,
-      compact: true,
       apps: [
         { id: 'h1', name: '通行概览', icon: 'chart', tone: 'blue' },
         { id: 'h2', name: '识别记录', icon: 'camera', tone: 'teal' },
@@ -279,7 +273,6 @@ const iotPage: AppPage = {
       title: '物联中心',
       tone: 'blue',
       cols: 4,
-      compact: true,
       apps: [
         { id: 'i1', name: '首页', icon: 'monitor', tone: 'blue' },
         { id: 'i2', name: '设备管理', icon: 'server', tone: 'teal' },

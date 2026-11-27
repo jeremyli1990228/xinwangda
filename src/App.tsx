@@ -46,8 +46,7 @@ function HomeShell() {
           <MyApps />
           <NewsBoard />
         </div>
-        <aside className="col-right">
-          <NoticePanel />
+        <aside className="col-right col-right--two">
           <TodoPanel />
           <StatsPanel />
         </aside>

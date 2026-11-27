@@ -80,6 +80,11 @@ dd {
   gap: var(--gap);
 }
 
+/* V1 右栏去掉「我的通知」后，待办与统计上下等分 */
+.col-right--two > .panel {
+  flex: 1 1 0;
+}
+
 /* 741~820 高度（如 1366×768 笔记本）：压缩顶栏与留白，保证一屏完整 */
 @media (max-height: 820px) and (min-height: 741px) {
   :root {

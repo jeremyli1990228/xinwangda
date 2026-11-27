@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import { ChevronDown, House, Sparkles } from 'lucide-react'
+import { BellRing, ChevronDown, House, Sparkles } from 'lucide-react'
 import { useUi } from '../ui/UiProvider'
+import AlertView from './AlertView'
 import './TopBar.css'
 
 const navs = [
@@ -13,10 +14,11 @@ const navs = [
 const parks = ['总部智慧园区', '石龙仔园区', '龙华园区', '惠州博罗园区', '南京溧水园区']
 
 export default function TopBar() {
-  const { notify, toggleVersion } = useUi()
+  const { notify, toggleVersion, version } = useUi()
   const [active, setActive] = useState('biz')
   const [park, setPark] = useState(parks[0])
   const [menu, setMenu] = useState<null | 'park' | 'user'>(null)
+  const [alertOpen, setAlertOpen] = useState(false)
   const barRef = useRef<HTMLElement>(null)
 
   // 演示用：Ctrl+Shift+V 与顶部小圆点均可切换 V1.0 / V2.0
@@ -101,6 +103,13 @@ export default function TopBar() {
         <span className="tb-week">星期五</span>
         <span className="tb-lunar">农历十九</span>
 
+        {version === 'v1' && (
+          <button className="tb-alert" title="预警信息" onClick={() => setAlertOpen(true)}>
+            <BellRing size={15} strokeWidth={2} />
+            <i className="tb-alert__dot" />
+          </button>
+        )}
+
         <div className="user" onClick={() => setMenu(menu === 'user' ? null : 'user')}>
           <span className="avatar">管</span>
           <span className="user__name">管理员</span>
@@ -122,6 +131,8 @@ export default function TopBar() {
           )}
         </div>
       </div>
+
+      {version === 'v1' && alertOpen && <AlertView open onClose={() => setAlertOpen(false)} />}
     </header>
   )
 }

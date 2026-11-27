@@ -19,23 +19,21 @@
   padding: 4px 14px 0 16px;
 }
 
-/* 「我的应用」标题行右侧添加入口 */
+/* 「我的应用」标题行右侧管理入口 */
 .apps-add {
-  width: 22px;
-  height: 22px;
-  display: grid;
-  place-items: center;
-  border: 1px solid #d7e2f4;
-  border-radius: 4px;
-  background: #fff;
-  color: #5b7bb4;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 4px;
+  border: 0;
+  background: transparent;
+  color: #8a94a5;
+  font-size: 12px;
   cursor: pointer;
-  transition: color 0.16s, border-color 0.16s, background 0.16s;
+  transition: color 0.16s;
 }
 
 .apps-add:hover {
-  border-color: #b9cff2;
-  background: #f4f8ff;
   color: var(--brand);
 }
 
@@ -184,12 +182,6 @@
 .apps-page--grid .app-group {
   position: relative;
   min-height: 0;
-}
-
-/* 单分组页（物联中心、人脸识别等）占满整页 */
-.apps-page--grid .app-group:only-child {
-  grid-column: 1 / -1;
-  grid-row: 1 / -1;
 }
 
 .app-group__label {
@@ -419,8 +411,8 @@
 
 /* 高密度分组：图标与名称同行排布，避免卡片较小时文字与图标重叠 */
 .app-group.is-compact .app-group__grid {
-  column-gap: 6px;
-  row-gap: 1px;
+  column-gap: 8px;
+  row-gap: 2px;
   align-content: start;
 }
 
@@ -428,8 +420,9 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  gap: 5px;
-  min-height: 0;
+  gap: 6px;
+  min-height: 20px;
+  padding: 1px 0;
 }
 
 .app-group.is-compact .app-item__ico {
@@ -447,7 +440,7 @@
 .app-group.is-compact .app-item__name {
   max-width: none;
   font-size: 10.5px;
-  line-height: 1.25;
+  line-height: 1.35;
   white-space: normal;
   overflow: visible;
   text-overflow: clip;

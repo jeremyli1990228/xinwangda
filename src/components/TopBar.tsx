@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Bell, ChevronDown, CloudSun, House, MapPin } from 'lucide-react'
+import { ChevronDown, House } from 'lucide-react'
 import { useUi } from '../ui/UiProvider'
 import './TopBar.css'
 
@@ -10,19 +10,13 @@ const navs = [
   { id: 'data', label: '数据资产中心' }
 ]
 
-const parks = ['石龙仔园区', '龙华园区', '惠州博罗园区', '南京溧水园区']
-
-const messageList = [
-  { id: 'm1', title: '食堂提前消费提醒', time: '15:26' },
-  { id: 'm2', title: '考勤机设备离线告警', time: '14:51' },
-  { id: 'm3', title: '工单「照明故障」已指派给您', time: '14:05' }
-]
+const parks = ['总部智慧园区', '石龙仔园区', '龙华园区', '惠州博罗园区', '南京溧水园区']
 
 export default function TopBar() {
-  const { notify, openDetail } = useUi()
+  const { notify } = useUi()
   const [active, setActive] = useState('biz')
   const [park, setPark] = useState(parks[0])
-  const [menu, setMenu] = useState<null | 'park' | 'bell' | 'user'>(null)
+  const [menu, setMenu] = useState<null | 'park' | 'user'>(null)
   const barRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
@@ -65,6 +59,7 @@ export default function TopBar() {
 
       <div className="topbar__right">
         <div className="park-select" onClick={() => setMenu(menu === 'park' ? null : 'park')}>
+          <span className="park-select__label">当前园区：</span>
           <span>{park}</span>
           <ChevronDown size={13} />
           {menu === 'park' && (
@@ -87,56 +82,13 @@ export default function TopBar() {
           )}
         </div>
 
-        <i className="tb-sep" />
-        <span className="tb-info">
-          <MapPin size={13} />
-          深圳
-        </span>
-        <i className="tb-sep" />
-        <span className="tb-info">
-          <CloudSun size={18} />
-          晴 24~32°C
-        </span>
-        <i className="tb-sep" />
-        <span className="tb-date">2023年7月8日</span>
-
-        <div className="icon-btns">
-          <button
-            className="icon-btn"
-            title="消息通知"
-            onClick={() => setMenu(menu === 'bell' ? null : 'bell')}
-          >
-            <Bell size={17} />
-            <i className="icon-badge">2</i>
-            {menu === 'bell' && (
-              <ul className="dropdown dropdown--msg" onClick={(e) => e.stopPropagation()}>
-                <li className="dropdown__head">消息通知</li>
-                {messageList.map((m) => (
-                  <li
-                    key={m.id}
-                    onClick={() => {
-                      setMenu(null)
-                      openDetail({
-                        title: m.title,
-                        subtitle: `2023.03.06 ${m.time}`,
-                        body: '该消息为系统实时推送，点击「查看详情」可跳转至对应业务模块进行处置。',
-                        actionLabel: '查看详情',
-                        onAction: () => notify('正在打开业务详情…')
-                      })
-                    }}
-                  >
-                    <span>{m.title}</span>
-                    <em>{m.time}</em>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </button>
-        </div>
+        <span className="tb-date">2026年11月27日</span>
+        <span className="tb-week">星期五</span>
+        <span className="tb-lunar">农历十九</span>
 
         <div className="user" onClick={() => setMenu(menu === 'user' ? null : 'user')}>
-          <span className="avatar">陈</span>
-          <span className="user__name">陈杰</span>
+          <span className="avatar">管</span>
+          <span className="user__name">管理员</span>
           <ChevronDown size={13} />
           {menu === 'user' && (
             <ul className="dropdown dropdown--user">

@@ -149,7 +149,7 @@ const screenPage2: AppPage = {
 /* 业务中心：首页按设计稿分组，第 7 个人脸识别单独一页 */
 const mosaicBiz: AppPage = {
   id: 'biz-1',
-  layout: 'mosaic',
+  layout: 'grid',
   groups: [
     {
       id: 'g-operate',
@@ -256,6 +256,7 @@ const bizPage2: AppPage = {
       title: '人脸识别',
       tone: 'blue',
       cols: 4,
+      compact: true,
       apps: [
         { id: 'h1', name: '通行概览', icon: 'chart', tone: 'blue' },
         { id: 'h2', name: '识别记录', icon: 'camera', tone: 'teal' },
@@ -279,6 +280,7 @@ const iotPage: AppPage = {
       title: '物联中心',
       tone: 'blue',
       cols: 5,
+      compact: true,
       apps: [
         { id: 'i1', name: '首页', icon: 'monitor', tone: 'blue' },
         { id: 'i2', name: '设备管理', icon: 'server', tone: 'teal' },

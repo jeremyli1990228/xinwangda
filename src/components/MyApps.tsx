@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { ChevronLeft, ChevronRight, LayoutGrid, Plus } from 'lucide-react'
+import { Settings2, ChevronLeft, ChevronRight, LayoutGrid } from 'lucide-react'
 import Panel from './Panel'
 import AppsConfig from './AppsConfig'
 import { iconMap } from './iconMap'
@@ -58,7 +58,9 @@ function GroupCard({ group, useArea }: { group: AppGroup; useArea: boolean }) {
       <span className={`app-group__label tone-${group.tone}`}>{group.title}</span>
       <div
         className="app-group__grid"
-        style={{ gridTemplateColumns: `repeat(${group.compact ? 2 : group.cols}, minmax(0, 1fr))` }}
+        style={{
+          gridTemplateColumns: `repeat(${group.compact ? (group.cols >= 4 ? 2 : 1) : group.cols}, minmax(0, 1fr))`
+        }}
       >
         {group.apps.map((app) => (
           <AppButton key={app.id} app={app} compact={group.compact} roomy={roomy} />
@@ -116,8 +118,9 @@ export default function MyApps() {
       watermark={LayoutGrid}
       className="apps-panel"
       extra={
-        <button className="apps-add" title="添加应用" onClick={() => setConfigOpen(true)}>
-          <Plus size={15} strokeWidth={2.4} />
+        <button className="apps-add" title="管理我的应用" onClick={() => setConfigOpen(true)}>
+          <Settings2 size={14} strokeWidth={1.9} />
+          <span>管理</span>
         </button>
       }
     >

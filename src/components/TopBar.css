@@ -123,21 +123,32 @@
   color: rgba(255, 255, 255, 0.92);
 }
 
+.tb-week,
+.tb-lunar {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.82);
+}
+
 /* 园区下拉 */
 .park-select {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   height: 30px;
-  padding: 0 8px 0 12px;
-  border: 1px solid rgba(255, 255, 255, 0.38);
-  border-radius: 3px;
-  background: rgba(255, 255, 255, 0.14);
-  font-size: 13.5px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 15px;
+  background: rgba(9, 36, 96, 0.42);
+  font-size: 13px;
   color: #fff;
   cursor: pointer;
   transition: background 0.15s;
+}
+
+.park-select__label {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 12px;
 }
 
 .park-select:hover {

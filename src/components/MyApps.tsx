@@ -1,10 +1,23 @@
-import { useState } from 'react'
-import { ChevronLeft, ChevronRight, LayoutGrid } from 'lucide-react'
+import { useMemo, useState } from 'react'
+import { ChevronLeft, ChevronRight, LayoutGrid, Plus } from 'lucide-react'
 import Panel from './Panel'
+import AppsConfig from './AppsConfig'
 import { iconMap } from './iconMap'
-import { appCategories, type AppGroup, type AppItem } from '../data/apps'
+import { appCategories, screenModeC, type AppGroup, type AppItem, type AppPage } from '../data/apps'
 import { useUi } from '../ui/UiProvider'
 import './MyApps.css'
+
+type Selection = Record<string, string[]>
+
+const buildDefaultSelection = (): Selection => {
+  const map: Selection = {}
+  appCategories.forEach((c) => {
+    map[c.id] = c.pages.flatMap((p) => p.groups.flatMap((g) => g.apps.map((a) => a.id)))
+  })
+  return map
+}
+
+const sameSet = (a: string[], b: string[]) => a.length === b.length && a.every((id) => b.includes(id))
 
 function AppButton({ app, compact, roomy }: { app: AppItem; compact?: boolean; roomy?: boolean }) {
   const { notify } = useUi()
@@ -58,17 +71,56 @@ function GroupCard({ group, useArea }: { group: AppGroup; useArea: boolean }) {
 export default function MyApps() {
   const [catId, setCatId] = useState('biz')
   const [page, setPage] = useState(0)
+  const [configOpen, setConfigOpen] = useState(false)
+  const [defaults] = useState<Selection>(buildDefaultSelection)
+  const [selection, setSelection] = useState<Selection>(buildDefaultSelection)
+  const { notify } = useUi()
 
   const category = appCategories.find((c) => c.id === catId) ?? appCategories[1]
-  const pages = category.pages
+
+  // 是否已通过「添加应用」调整过勾选
+  const custom = useMemo(
+    () => appCategories.some((c) => !sameSet(selection[c.id] ?? [], defaults[c.id] ?? [])),
+    [selection, defaults]
+  )
+
+  const pages = useMemo<AppPage[]>(() => {
+    if (!custom) return category.pages
+    const base = category.pages.flatMap((p) => p.groups)
+    const groups = category.id === 'screen' ? [...base, ...screenModeC] : base
+    const picked = groups
+      .map((g) => ({
+        ...g,
+        apps: g.apps.filter((a) => (selection[category.id] ?? []).includes(a.id))
+      }))
+      .filter((g) => g.apps.length > 0)
+
+    // 按 6 个框一页重新分页，超过 6 个才出现左右翻页
+    const out: AppPage[] = []
+    for (let i = 0; i < picked.length; i += 6) {
+      out.push({ id: `${category.id}-custom-${i / 6}`, layout: 'grid', groups: picked.slice(i, i + 6) })
+    }
+    return out
+  }, [category, custom, selection])
+
   const total = pages.length
+  const current = Math.min(page, Math.max(total - 1, 0))
 
   const go = (dir: -1 | 1) => {
     setPage((p) => Math.min(total - 1, Math.max(0, p + dir)))
   }
 
   return (
-    <Panel title="我的应用" watermark={LayoutGrid} className="apps-panel">
+    <Panel
+      title="我的应用"
+      watermark={LayoutGrid}
+      className="apps-panel"
+      extra={
+        <button className="apps-add" title="添加应用" onClick={() => setConfigOpen(true)}>
+          <Plus size={15} strokeWidth={2.4} />
+        </button>
+      }
+    >
       <div className="apps-body">
         <div className="cat-tabs">
           {appCategories.map((c) => (
@@ -86,29 +138,33 @@ export default function MyApps() {
         </div>
 
         <div className="apps-stage">
-          <div className="apps-viewport">
-            <div className="apps-track" style={{ transform: `translateX(-${page * 100}%)` }}>
-              {pages.map((p) => (
-                <div className={`apps-page apps-page--${p.layout}`} key={p.id}>
-                  {p.layout === 'mosaic' ? (
-                    <div className="apps-mosaic">
-                      {p.groups.map((g) => (
-                        <GroupCard key={g.id} group={g} useArea />
-                      ))}
-                    </div>
-                  ) : (
-                    p.groups.map((g) => <GroupCard key={g.id} group={g} useArea={false} />)
-                  )}
-                </div>
-              ))}
+          {total === 0 ? (
+            <div className="apps-empty">暂未选择应用，点击右上角「+」添加</div>
+          ) : (
+            <div className="apps-viewport">
+              <div className="apps-track" style={{ transform: `translateX(-${current * 100}%)` }}>
+                {pages.map((p) => (
+                  <div className={`apps-page apps-page--${p.layout}`} key={p.id}>
+                    {p.layout === 'mosaic' ? (
+                      <div className="apps-mosaic">
+                        {p.groups.map((g) => (
+                          <GroupCard key={g.id} group={g} useArea />
+                        ))}
+                      </div>
+                    ) : (
+                      p.groups.map((g) => <GroupCard key={g.id} group={g} useArea={false} />)
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           {total > 1 && (
             <>
               <button
                 className="stage-arrow stage-arrow--prev"
-                disabled={page === 0}
+                disabled={current === 0}
                 onClick={() => go(-1)}
                 aria-label="上一页"
               >
@@ -116,7 +172,7 @@ export default function MyApps() {
               </button>
               <button
                 className="stage-arrow stage-arrow--next"
-                disabled={page === total - 1}
+                disabled={current === total - 1}
                 onClick={() => go(1)}
                 aria-label="下一页"
               >
@@ -132,12 +188,25 @@ export default function MyApps() {
           {pages.map((p, i) => (
             <button
               key={p.id}
-              className={`apps-dot${i === page ? ' is-active' : ''}`}
+              className={`apps-dot${i === current ? ' is-active' : ''}`}
               onClick={() => setPage(i)}
               aria-label={`第 ${i + 1} 页`}
             />
           ))}
         </div>
+      )}
+
+      {configOpen && (
+        <AppsConfig
+          selection={selection}
+          onClose={() => setConfigOpen(false)}
+          onConfirm={(next) => {
+            setSelection(next)
+            setConfigOpen(false)
+            setPage(0)
+            notify('应用配置已更新，已同步至首页')
+          }}
+        />
       )}
     </Panel>
   )

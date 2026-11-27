@@ -105,7 +105,6 @@ export default function TopBar() {
 
         <button className="tb-alert" title="预警信息" onClick={() => setAlertOpen(true)}>
           <img className="tb-alert__ico" src="alert-icon.png" alt="预警信息" />
-          <i className="tb-alert__dot" />
         </button>
 
         <div className="user" onClick={() => setMenu(menu === 'user' ? null : 'user')}>

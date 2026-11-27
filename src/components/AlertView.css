@@ -409,17 +409,6 @@ input.alert-ctl:focus {
   display: block;
 }
 
-.tb-alert__dot {
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #ff4d4f;
-  box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.55);
-}
-
 @media (max-width: 1200px) {
   .alert-view__panel {
     width: 96vw;

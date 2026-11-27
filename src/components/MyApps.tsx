@@ -58,9 +58,7 @@ function GroupCard({ group, useArea }: { group: AppGroup; useArea: boolean }) {
       <span className={`app-group__label tone-${group.tone}`}>{group.title}</span>
       <div
         className="app-group__grid"
-        style={{
-          gridTemplateColumns: `repeat(${group.compact ? (group.cols >= 4 ? 2 : 1) : group.cols}, minmax(0, 1fr))`
-        }}
+        style={{ gridTemplateColumns: `repeat(${group.cols}, minmax(0, 1fr))` }}
       >
         {group.apps.map((app) => (
           <AppButton key={app.id} app={app} compact={group.compact} roomy={roomy} />

@@ -170,7 +170,7 @@ const mosaicBiz: AppPage = {
       id: 'g-office',
       title: '智慧办公',
       tone: 'yellow',
-      cols: 2,
+      cols: 3,
       compact: true,
       area: { x: 34.2, y: 0.4, w: 27.6, h: 47.5 },
       apps: [
@@ -235,7 +235,6 @@ const mosaicBiz: AppPage = {
       title: '智慧通行',
       tone: 'blue',
       cols: 2,
-      compact: true,
       area: { x: 63.6, y: 58.8, w: 36.4, h: 40.8 },
       apps: [
         { id: 'f1', name: '智慧门禁', icon: 'door', tone: 'blue' },
@@ -279,7 +278,7 @@ const iotPage: AppPage = {
       id: 'iot-all',
       title: '物联中心',
       tone: 'blue',
-      cols: 5,
+      cols: 4,
       compact: true,
       apps: [
         { id: 'i1', name: '首页', icon: 'monitor', tone: 'blue' },

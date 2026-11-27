@@ -115,6 +115,7 @@
 .apps-viewport {
   flex: 1;
   min-width: 0;
+  padding: 0 14px;
   overflow: hidden;
 }
 
@@ -375,11 +376,16 @@
 }
 
 .stage-arrow--prev {
-  left: -6px;
+  left: -10px;
 }
 
 .stage-arrow--next {
-  right: -6px;
+  right: -10px;
+}
+
+.stage-arrow svg {
+  width: 34px;
+  height: 34px;
 }
 
 /* 轮播点 */
@@ -409,38 +415,35 @@
   background: #3b7ef0;
 }
 
-/* 高密度分组：图标与名称同行排布，避免卡片较小时文字与图标重叠 */
+/* 高密度分组：沿用「运营大屏」图标在上、名称在下的排版，仅缩小图标与字号 */
 .app-group.is-compact .app-group__grid {
-  column-gap: 8px;
+  column-gap: 2px;
   row-gap: 2px;
   align-content: start;
 }
 
 .app-group.is-compact .app-item {
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 6px;
-  min-height: 20px;
-  padding: 1px 0;
+  gap: 1px;
+  min-height: 0;
+  padding: 0;
 }
 
 .app-group.is-compact .app-item__ico {
   flex: none;
-  width: 18px;
-  height: 18px;
-  border-radius: 5px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
 }
 
 .app-group.is-compact .app-item__ico svg {
-  width: 11px;
-  height: 11px;
+  width: 12px;
+  height: 12px;
 }
 
 .app-group.is-compact .app-item__name {
-  max-width: none;
-  font-size: 10.5px;
-  line-height: 1.35;
+  max-width: 82px;
+  font-size: 9.5px;
+  line-height: 1.2;
   white-space: normal;
   overflow: visible;
   text-overflow: clip;

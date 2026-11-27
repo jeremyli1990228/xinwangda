@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
-import { ChevronDown, House } from 'lucide-react'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { ChevronDown, House, Sparkles } from 'lucide-react'
 import { useUi } from '../ui/UiProvider'
 import './TopBar.css'
 
@@ -17,7 +17,27 @@ export default function TopBar() {
   const [active, setActive] = useState('biz')
   const [park, setPark] = useState(parks[0])
   const [menu, setMenu] = useState<null | 'park' | 'user'>(null)
+  const [ver, setVer] = useState<'v1' | 'v2'>('v1')
   const barRef = useRef<HTMLElement>(null)
+
+  // 演示用：切换 V1.0 / V2.0 视觉版本（仅切换样式，交互逻辑完全一致）
+  useEffect(() => {
+    document.documentElement.dataset.ver = ver
+  }, [ver])
+
+  const toggleVer = useCallback(() => {
+    const next = ver === 'v1' ? 'v2' : 'v1'
+    setVer(next)
+    notify(next === 'v2' ? '已切换到 V2.0 视觉版本' : '已切回 V1.0 标准版本')
+  }, [ver, notify])
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'v') toggleVer()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [toggleVer])
 
   useEffect(() => {
     const onDocClick = (e: MouseEvent) => {
@@ -43,6 +63,10 @@ export default function TopBar() {
 
       <button className="home-btn" title="首页" onClick={() => notify('已返回首页')}>
         <House size={19} strokeWidth={2} />
+      </button>
+
+      <button className="ver-switch" onClick={toggleVer} aria-label="切换视觉版本" tabIndex={-1}>
+        <Sparkles size={9} strokeWidth={2.4} />
       </button>
 
       <nav className="nav">

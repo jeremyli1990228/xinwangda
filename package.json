@@ -1,9 +1,9 @@
 {
   "name": "sunwoda-smart-park",
   "private": true,
-  "version": "0.1.0",
+  "version": "2.0.0",
   "type": "module",
-  "description": "欣旺达智慧园区综合管理平台 - 首页交互原型",
+  "description": "欣旺达智慧园区综合管理平台 - 首页交互原型（V1.0 标准版 / V2.0 视觉版）",
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",

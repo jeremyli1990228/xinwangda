@@ -14,6 +14,8 @@ export interface DetailPayload {
 
 export type TodoTabId = 'all' | 'alert' | 'workorder' | 'audit'
 
+export type VersionId = 'v1' | 'v2'
+
 export type ViewState =
   | { name: 'noticeList' }
   | { name: 'noticeDetail'; id: string }
@@ -27,6 +29,8 @@ interface UiApi {
   view: ViewState | null
   navigate: (view: ViewState) => void
   closeView: () => void
+  version: VersionId
+  toggleVersion: () => void
 }
 
 const UiContext = createContext<UiApi>({
@@ -35,7 +39,9 @@ const UiContext = createContext<UiApi>({
   closeDetail: () => undefined,
   view: null,
   navigate: () => undefined,
-  closeView: () => undefined
+  closeView: () => undefined,
+  version: 'v1',
+  toggleVersion: () => undefined
 })
 
 export const useUi = () => useContext(UiContext)
@@ -44,6 +50,8 @@ export function UiProvider({ children }: { children: ReactNode }) {
   const [toast, setToast] = useState<{ id: number; msg: string } | null>(null)
   const [detail, setDetail] = useState<DetailPayload | null>(null)
   const [view, setView] = useState<ViewState | null>(null)
+  const [version, setVersion] = useState<VersionId>('v1')
+  const versionRef = useRef<VersionId>('v1')
   const timer = useRef<number>()
 
   const notify = useCallback((msg: string) => {
@@ -61,6 +69,18 @@ export function UiProvider({ children }: { children: ReactNode }) {
   }, [])
   const closeView = useCallback(() => setView(null), [])
 
+  // 演示用版本切换：V1.0 标准版 / V2.0 结构版（仅前端呈现不同，逻辑完全共用）
+  const toggleVersion = useCallback(() => {
+    const next: VersionId = versionRef.current === 'v1' ? 'v2' : 'v1'
+    versionRef.current = next
+    setVersion(next)
+    notify(next === 'v2' ? '已切换到 V2.0 方案版本' : '已切回 V1.0 标准版本')
+  }, [notify])
+
+  useEffect(() => {
+    document.documentElement.dataset.ver = version
+  }, [version])
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setDetail(null)
@@ -70,7 +90,9 @@ export function UiProvider({ children }: { children: ReactNode }) {
   }, [])
 
   return (
-    <UiContext.Provider value={{ notify, openDetail, closeDetail, view, navigate, closeView }}>
+    <UiContext.Provider
+      value={{ notify, openDetail, closeDetail, view, navigate, closeView, version, toggleVersion }}
+    >
       {children}
 
       {toast && (

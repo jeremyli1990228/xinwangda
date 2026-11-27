@@ -380,30 +380,31 @@ input.alert-ctl:focus {
   color: #2f6df2;
 }
 
-/* 顶栏预警入口 */
+/* 顶栏预警入口：仅图标，外层无圆弧边框 */
 .tb-alert {
   position: relative;
   flex: none;
   display: grid;
   place-items: center;
-  width: 30px;
-  height: 30px;
-  margin-left: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 9px;
-  background: rgba(255, 255, 255, 0.14);
-  color: #fff;
+  width: 28px;
+  height: 28px;
+  margin-left: 2px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   cursor: pointer;
-  transition: all 0.16s;
+  transition: transform 0.16s, filter 0.16s;
 }
 
 .tb-alert:hover {
-  background: rgba(255, 255, 255, 0.26);
+  transform: translateY(-1px);
+  filter: drop-shadow(0 3px 8px rgba(255, 96, 80, 0.55));
 }
 
 .tb-alert__ico {
-  width: 21px;
-  height: 21px;
+  width: 22px;
+  height: 22px;
   object-fit: contain;
   display: block;
 }

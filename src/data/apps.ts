@@ -31,7 +31,122 @@ export interface AppCategory {
   pages: AppPage[]
 }
 
-/* 首页核心马赛克布局，百分比坐标严格对齐设计稿 */
+/* 运营大屏：按设计稿分为安全、通行、能源、设备、办公、生产、场景/系统/资源/数据管理 */
+const screenPage1: AppPage = {
+  id: 'screen-1',
+  layout: 'grid',
+  groups: [
+    {
+      id: 's-safety',
+      title: '安全',
+      tone: 'lime',
+      cols: 2,
+      apps: [
+        { id: 's1', name: '安防', icon: 'shield', tone: 'blue' },
+        { id: 's2', name: '消防', icon: 'flame', tone: 'orange' },
+        { id: 's3', name: '巡更', icon: 'footprints', tone: 'teal' },
+        { id: 's4', name: '应急', icon: 'siren', tone: 'gold' }
+      ]
+    },
+    {
+      id: 's-pass',
+      title: '通行',
+      tone: 'yellow',
+      cols: 2,
+      apps: [
+        { id: 's5', name: '人员', icon: 'users', tone: 'blue' },
+        { id: 's6', name: '车辆', icon: 'truck', tone: 'teal' },
+        { id: 's7', name: '物流', icon: 'bus', tone: 'orange' }
+      ]
+    },
+    {
+      id: 's-energy',
+      title: '能源',
+      tone: 'green',
+      cols: 2,
+      apps: [
+        { id: 's8', name: '碳排放', icon: 'leaf', tone: 'green' },
+        { id: 's9', name: '能耗', icon: 'zap', tone: 'gold' }
+      ]
+    },
+    {
+      id: 's-device',
+      title: '设备',
+      tone: 'blue',
+      cols: 3,
+      apps: [
+        { id: 's10', name: '冷源', icon: 'waves', tone: 'teal' },
+        { id: 's11', name: '工艺气体', icon: 'gauge', tone: 'orange' },
+        { id: 's12', name: '配电', icon: 'plug', tone: 'gold' },
+        { id: 's13', name: '给排水', icon: 'droplets', tone: 'blue' },
+        { id: 's14', name: '电梯', icon: 'layers', tone: 'green' },
+        { id: 's15', name: '照明', icon: 'lightbulb', tone: 'gold' }
+      ]
+    },
+    {
+      id: 's-office',
+      title: '办公',
+      tone: 'royal',
+      cols: 2,
+      apps: [
+        { id: 's16', name: '环境', icon: 'sun', tone: 'gold' },
+        { id: 's17', name: '会议室', icon: 'presentation', tone: 'blue' },
+        { id: 's18', name: '服务', icon: 'phone', tone: 'teal' }
+      ]
+    },
+    {
+      id: 's-produce',
+      title: '生产',
+      tone: 'orange',
+      cols: 1,
+      apps: [{ id: 's19', name: '生产', icon: 'gauge', tone: 'orange' }]
+    }
+  ]
+}
+
+const screenPage2: AppPage = {
+  id: 'screen-2',
+  layout: 'grid',
+  groups: [
+    {
+      id: 's-scene',
+      title: '场景管理',
+      tone: 'blue',
+      cols: 1,
+      apps: [{ id: 's20', name: '场景中心', icon: 'monitorPlay', tone: 'teal' }]
+    },
+    {
+      id: 's-system',
+      title: '系统管理',
+      tone: 'royal',
+      cols: 2,
+      apps: [
+        { id: 's21', name: '登陆日志', icon: 'folder', tone: 'gray' },
+        { id: 's22', name: '操作日志', icon: 'pencil', tone: 'gray' }
+      ]
+    },
+    {
+      id: 's-resource',
+      title: '资源管理',
+      tone: 'green',
+      cols: 2,
+      apps: [
+        { id: 's23', name: 'HDR', icon: 'camera', tone: 'blue' },
+        { id: 's24', name: '图片', icon: 'layers', tone: 'teal' },
+        { id: 's25', name: '模型', icon: 'share', tone: 'orange' }
+      ]
+    },
+    {
+      id: 's-data',
+      title: '数据管理',
+      tone: 'lime',
+      cols: 1,
+      apps: [{ id: 's26', name: '数据管理', icon: 'database', tone: 'blue' }]
+    }
+  ]
+}
+
+/* 业务中心：首页按设计稿分组，第 7 个人脸识别单独一页 */
 const mosaicBiz: AppPage = {
   id: 'biz-1',
   layout: 'mosaic',
@@ -41,25 +156,29 @@ const mosaicBiz: AppPage = {
       title: '智慧运营',
       tone: 'lime',
       cols: 3,
+      compact: true,
       area: { x: 0, y: 0, w: 32.4, h: 47.9 },
       apps: [
-        { id: 'a1', name: '综合管理', icon: 'monitor', tone: 'blue' },
-        { id: 'a2', name: '领导驾驶舱', icon: 'chat', tone: 'orange' },
-        { id: 'a3', name: '智能工单', icon: 'clipboard', tone: 'teal' },
-        { id: 'a4', name: '智能巡检', icon: 'monitorCog', tone: 'mint' },
-        { id: 'a5', name: '空间管理', icon: 'chart', tone: 'green' }
+        { id: 'a1', name: '硬件管理', icon: 'server', tone: 'blue' },
+        { id: 'a2', name: '领导驾驶舱', icon: 'monitor', tone: 'blue' },
+        { id: 'a3', name: '测试英文', icon: 'pencil', tone: 'gray' },
+        { id: 'a4', name: '智能工单', icon: 'clipboard', tone: 'teal' },
+        { id: 'a5', name: '智能巡检', icon: 'monitorCog', tone: 'green' }
       ]
     },
     {
       id: 'g-office',
       title: '智慧办公',
       tone: 'yellow',
-      cols: 3,
+      cols: 2,
+      compact: true,
       area: { x: 34.2, y: 0.4, w: 27.6, h: 47.5 },
       apps: [
-        { id: 'b1', name: '考勤机管理', icon: 'landmark', tone: 'gray', flat: true },
-        { id: 'b2', name: '环境管理', icon: 'pencil', tone: 'gray', flat: true },
-        { id: 'b3', name: '车辆全生命周期管理', icon: 'truck', tone: 'gray', flat: true }
+        { id: 'b1', name: '考勤机管理', icon: 'landmark', tone: 'orange' },
+        { id: 'b2', name: '空间管理', icon: 'chart', tone: 'teal' },
+        { id: 'b3', name: '环境管理', icon: 'pencil', tone: 'gray', flat: true },
+        { id: 'b4', name: '车辆全生命周期管理', icon: 'truck', tone: 'gray', flat: true },
+        { id: 'b5', name: '测试中文', icon: 'clipboard', tone: 'gray', flat: true }
       ]
     },
     {
@@ -67,49 +186,62 @@ const mosaicBiz: AppPage = {
       title: '智慧服务',
       tone: 'blue',
       cols: 3,
+      compact: true,
       area: { x: 63.6, y: 0.4, w: 36.4, h: 47.5 },
       apps: [
         { id: 'c1', name: '智慧食堂', icon: 'utensils', tone: 'blue' },
         { id: 'c2', name: '智慧宿舍', icon: 'bed', tone: 'gold' },
         { id: 'c3', name: '智慧会议室', icon: 'presentation', tone: 'teal' },
         { id: 'c4', name: '多媒体设备管理', icon: 'monitorPlay', tone: 'blue' },
-        { id: 'c5', name: '智慧厕所', icon: 'accessible', tone: 'gold' },
-        { id: 'c6', name: '智慧充电桩', icon: 'zap', tone: 'teal' }
+        { id: 'c5', name: '广播系统', icon: 'radio', tone: 'orange' },
+        { id: 'c6', name: '智慧厕所', icon: 'accessible', tone: 'gold' },
+        { id: 'c7', name: '智慧充电桩', icon: 'zap', tone: 'teal' }
       ]
     },
     {
-      id: 'g-safe',
+      id: 'g-safety',
       title: '数智安全',
-      tone: 'orange',
+      tone: 'royal',
       cols: 3,
-      area: { x: 0, y: 50.3, w: 32.4, h: 47.9 },
+      compact: true,
+      area: { x: 0, y: 58.4, w: 32.4, h: 41.2 },
       apps: [
         { id: 'd1', name: '智慧安防', icon: 'shield', tone: 'blue' },
-        { id: 'd2', name: '智慧巡更', icon: 'footprints', tone: 'orange' },
-        { id: 'd3', name: '智慧消防', icon: 'flame', tone: 'teal' }
+        { id: 'd2', name: '智慧巡更', icon: 'footprints', tone: 'teal' },
+        { id: 'd3', name: '智慧消防', icon: 'flame', tone: 'orange' },
+        { id: 'd4', name: '应急指挥调度', icon: 'siren', tone: 'gold' },
+        { id: 'd5', name: 'RFID物联网防盗', icon: 'radio', tone: 'green' },
+        { id: 'd6', name: '黑白名单识别', icon: 'badge', tone: 'blue' }
       ]
     },
     {
-      id: 'g-lowcarbon',
+      id: 'g-green',
       title: '绿色低碳',
       tone: 'green',
       cols: 3,
-      area: { x: 34.2, y: 50.3, w: 27.6, h: 47.9 },
+      compact: true,
+      area: { x: 34.2, y: 58.8, w: 27.6, h: 40.8 },
       apps: [
-        { id: 'e1', name: '碳排管理', icon: 'cog', tone: 'gray', flat: true },
-        { id: 'e2', name: '智慧环境', icon: 'users', tone: 'gray', flat: true },
-        { id: 'e3', name: '能耗', icon: 'leaf', tone: 'gold' }
+        { id: 'e1', name: '碳排放管理', icon: 'leaf', tone: 'green' },
+        { id: 'e2', name: '能耗管理', icon: 'zap', tone: 'gold' },
+        { id: 'e3', name: '智慧环境', icon: 'sun', tone: 'gold' },
+        { id: 'e4', name: '动环监测', icon: 'gauge', tone: 'teal' },
+        { id: 'e5', name: '智慧照明', icon: 'lightbulb', tone: 'gold' },
+        { id: 'e6', name: '工务设备管理', icon: 'cog', tone: 'gray' }
       ]
     },
     {
       id: 'g-pass',
       title: '智慧通行',
-      tone: 'royal',
-      cols: 3,
-      area: { x: 63.6, y: 50.3, w: 36.4, h: 47.9 },
+      tone: 'blue',
+      cols: 2,
+      compact: true,
+      area: { x: 63.6, y: 58.8, w: 36.4, h: 40.8 },
       apps: [
-        { id: 'f1', name: '人员', icon: 'users', tone: 'mint' },
-        { id: 'f2', name: '物流', icon: 'truck', tone: 'blue' }
+        { id: 'f1', name: '智慧门禁', icon: 'door', tone: 'blue' },
+        { id: 'f2', name: '智慧访客', icon: 'users', tone: 'teal' },
+        { id: 'f3', name: '智慧停车', icon: 'card', tone: 'gold' },
+        { id: 'f4', name: '智慧梯控', icon: 'layers', tone: 'green' }
       ]
     }
   ]
@@ -120,194 +252,60 @@ const bizPage2: AppPage = {
   layout: 'grid',
   groups: [
     {
-      id: 'g-logistics',
-      title: '智慧后勤',
-      tone: 'yellow',
-      cols: 4,
-      apps: [
-        { id: 'h1', name: '智慧餐饮', icon: 'utensils', tone: 'blue' },
-        { id: 'h2', name: '宿舍管理', icon: 'bed', tone: 'gold' },
-        { id: 'h3', name: '工服管理', icon: 'shirt', tone: 'mint' },
-        { id: 'h4', name: '班车管理', icon: 'bus', tone: 'orange' }
-      ]
-    },
-    {
-      id: 'g-energy',
-      title: '智慧能源',
-      tone: 'green',
-      cols: 4,
-      apps: [
-        { id: 'i1', name: '能耗监测', icon: 'gauge', tone: 'green' },
-        { id: 'i2', name: '光伏管理', icon: 'sun', tone: 'gold' },
-        { id: 'i3', name: '储能管理', icon: 'plug', tone: 'teal' },
-        { id: 'i4', name: '碳资产管理', icon: 'leaf', tone: 'green' }
-      ]
-    },
-    {
-      id: 'g-safety',
-      title: '安全生产',
-      tone: 'orange',
-      cols: 4,
-      apps: [
-        { id: 'j1', name: '安全巡检', icon: 'shield', tone: 'blue' },
-        { id: 'j2', name: '隐患管理', icon: 'siren', tone: 'orange' },
-        { id: 'j3', name: '应急预案', icon: 'clipboard', tone: 'teal' },
-        { id: 'j4', name: '培训考试', icon: 'users', tone: 'mint' }
-      ]
-    }
-  ]
-}
-
-const bizPage3: AppPage = {
-  id: 'biz-3',
-  layout: 'grid',
-  groups: [
-    {
-      id: 'g-parking',
-      title: '智慧停车',
+      id: 'g-face',
+      title: '人脸识别',
       tone: 'blue',
       cols: 4,
       apps: [
-        { id: 'k1', name: '车位管理', icon: 'car', tone: 'blue' },
-        { id: 'k2', name: '车辆识别', icon: 'camera', tone: 'mint' },
-        { id: 'k3', name: '收费管理', icon: 'card', tone: 'gold' },
-        { id: 'k4', name: '停车引导', icon: 'layers', tone: 'teal' }
-      ]
-    },
-    {
-      id: 'g-light',
-      title: '智慧照明',
-      tone: 'lime',
-      cols: 4,
-      apps: [
-        { id: 'l1', name: '照明控制', icon: 'lightbulb', tone: 'gold' },
-        { id: 'l2', name: '场景策略', icon: 'sparkles', tone: 'blue' },
-        { id: 'l3', name: '故障告警', icon: 'siren', tone: 'orange' }
-      ]
-    },
-    {
-      id: 'g-water',
-      title: '智慧水务',
-      tone: 'royal',
-      cols: 4,
-      apps: [
-        { id: 'm1', name: '用水监测', icon: 'droplets', tone: 'teal' },
-        { id: 'm2', name: '管网管理', icon: 'waves', tone: 'blue' },
-        { id: 'm3', name: '水质管理', icon: 'gauge', tone: 'mint' }
+        { id: 'h1', name: '通行概览', icon: 'chart', tone: 'blue' },
+        { id: 'h2', name: '识别记录', icon: 'camera', tone: 'teal' },
+        { id: 'h3', name: '考勤管理', icon: 'landmark', tone: 'orange' },
+        { id: 'h4', name: '人员管理', icon: 'users', tone: 'blue' },
+        { id: 'h5', name: '设备管理', icon: 'server', tone: 'green' },
+        { id: 'h6', name: '通行管理', icon: 'share', tone: 'teal' },
+        { id: 'h7', name: '访客管理', icon: 'phone', tone: 'gold' }
       ]
     }
   ]
 }
 
-const screenPage: AppPage = {
-  id: 'screen-1',
-  layout: 'grid',
-  groups: [
-    {
-      id: 's1',
-      title: '综合态势',
-      tone: 'blue',
-      cols: 4,
-      apps: [
-        { id: 'n1', name: '园区总览', icon: 'monitor', tone: 'blue' },
-        { id: 'n2', name: '能耗态势', icon: 'chart', tone: 'green' },
-        { id: 'n3', name: '安防态势', icon: 'shield', tone: 'blue' },
-        { id: 'n4', name: '通行态势', icon: 'footprints', tone: 'orange' }
-      ]
-    },
-    {
-      id: 's2',
-      title: '运营指标',
-      tone: 'green',
-      cols: 4,
-      apps: [
-        { id: 'o1', name: '经营指标', icon: 'gauge', tone: 'mint' },
-        { id: 'o2', name: '工单效率', icon: 'clipboard', tone: 'teal' },
-        { id: 'o3', name: '人员效能', icon: 'users', tone: 'mint' },
-        { id: 'o4', name: '碳排看板', icon: 'leaf', tone: 'green' }
-      ]
-    },
-    {
-      id: 's3',
-      title: '视频中心',
-      tone: 'royal',
-      cols: 4,
-      apps: [
-        { id: 'p1', name: '视频巡查', icon: 'video', tone: 'blue' },
-        { id: 'p2', name: '重点点位', icon: 'camera', tone: 'teal' },
-        { id: 'p3', name: '告警中心', icon: 'siren', tone: 'orange' }
-      ]
-    }
-  ]
-}
-
+/* 物联中心：单分组完整展示 */
 const iotPage: AppPage = {
   id: 'iot-1',
   layout: 'grid',
   groups: [
     {
-      id: 'i1',
-      title: '设备接入',
+      id: 'iot-all',
+      title: '物联中心',
       tone: 'blue',
-      cols: 4,
+      cols: 5,
       apps: [
-        { id: 'q1', name: '设备台账', icon: 'harddrive', tone: 'blue' },
-        { id: 'q2', name: '网关管理', icon: 'router', tone: 'teal' },
-        { id: 'q3', name: '传感器', icon: 'radio', tone: 'mint' },
-        { id: 'q4', name: '网络拓扑', icon: 'network', tone: 'gold' }
-      ]
-    },
-    {
-      id: 'i2',
-      title: '视频物联',
-      tone: 'lime',
-      cols: 4,
-      apps: [
-        { id: 'r1', name: '摄像头管理', icon: 'camera', tone: 'blue' },
-        { id: 'r2', name: '录像管理', icon: 'video', tone: 'teal' },
-        { id: 'r3', name: 'AI 分析', icon: 'monitorPlay', tone: 'mint' }
-      ]
-    },
-    {
-      id: 'i3',
-      title: '门禁通行',
-      tone: 'orange',
-      cols: 4,
-      apps: [
-        { id: 't1', name: '门禁设备', icon: 'door', tone: 'blue' },
-        { id: 't2', name: '访客机', icon: 'users', tone: 'mint' },
-        { id: 't3', name: '对讲设备', icon: 'phone', tone: 'orange' },
-        { id: 't4', name: '充电桩', icon: 'zap', tone: 'gold' }
+        { id: 'i1', name: '首页', icon: 'monitor', tone: 'blue' },
+        { id: 'i2', name: '设备管理', icon: 'server', tone: 'teal' },
+        { id: 'i3', name: '设备接入', icon: 'plug', tone: 'orange' },
+        { id: 'i4', name: '事件中心', icon: 'siren', tone: 'gold' },
+        { id: 'i5', name: '数据采集', icon: 'database', tone: 'green' },
+        { id: 'i6', name: '通知管理', icon: 'chat', tone: 'blue' },
+        { id: 'i7', name: '视频网关', icon: 'video', tone: 'teal' },
+        { id: 'i8', name: '日志管理', icon: 'folder', tone: 'gray' },
+        { id: 'i9', name: '数据流转', icon: 'share', tone: 'orange' },
+        { id: 'i10', name: '个人设置', icon: 'cog', tone: 'gray' }
       ]
     }
   ]
 }
 
+/* 数据资产中心：与设计稿一致，仅一个名为 12112 的空分组 */
 const dataPage: AppPage = {
   id: 'data-1',
   layout: 'grid',
   groups: [
     {
-      id: 'd1',
-      title: '数据目录',
+      id: 'data-empty',
+      title: '12112',
       tone: 'blue',
-      cols: 4,
-      apps: [
-        { id: 'u1', name: '数据资源目录', icon: 'folder', tone: 'blue' },
-        { id: 'u2', name: '主数据管理', icon: 'database', tone: 'teal' },
-        { id: 'u3', name: '数据服务', icon: 'server', tone: 'mint' }
-      ]
-    },
-    {
-      id: 'd2',
-      title: '指标体系',
-      tone: 'green',
-      cols: 4,
-      apps: [
-        { id: 'v1', name: '指标中心', icon: 'gauge', tone: 'mint' },
-        { id: 'v2', name: '数据质量', icon: 'badge', tone: 'green' },
-        { id: 'v3', name: '数据共享', icon: 'share', tone: 'blue' }
-      ]
+      cols: 1,
+      apps: []
     }
   ]
 }
@@ -354,8 +352,8 @@ export const screenModeC: AppGroup[] = [
 ]
 
 export const appCategories: AppCategory[] = [
-  { id: 'screen', name: '运营大屏', pages: [screenPage] },
-  { id: 'biz', name: '业务中心', pages: [mosaicBiz, bizPage2, bizPage3] },
+  { id: 'screen', name: '运营大屏', pages: [screenPage1, screenPage2] },
+  { id: 'biz', name: '业务中心', pages: [mosaicBiz, bizPage2] },
   { id: 'iot', name: '物联中心', pages: [iotPage] },
   { id: 'data', name: '数据资产中心', pages: [dataPage] }
 ]

@@ -186,6 +186,12 @@
   min-height: 0;
 }
 
+/* 单分组页（物联中心、人脸识别等）占满整页 */
+.apps-page--grid .app-group:only-child {
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+}
+
 .app-group__label {
   position: absolute;
   top: -11px;
@@ -409,4 +415,41 @@
   width: 26px;
   border-radius: 5px;
   background: #3b7ef0;
+}
+
+/* 高密度分组：图标与名称同行排布，避免卡片较小时文字与图标重叠 */
+.app-group.is-compact .app-group__grid {
+  column-gap: 6px;
+  row-gap: 1px;
+  align-content: start;
+}
+
+.app-group.is-compact .app-item {
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+  min-height: 0;
+}
+
+.app-group.is-compact .app-item__ico {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+}
+
+.app-group.is-compact .app-item__ico svg {
+  width: 11px;
+  height: 11px;
+}
+
+.app-group.is-compact .app-item__name {
+  max-width: none;
+  font-size: 10.5px;
+  line-height: 1.25;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  word-break: break-all;
 }

@@ -304,13 +304,13 @@ const dataPage: AppPage = {
   ]
 }
 
-/* 运营大屏 C 端参观模式应用，仅出现在「添加应用」弹窗的 C 端配置中 */
+/* 运营大屏 C 端参考模式应用：与 B 端管理模式分开展示，排版沿用 B 端卡片样式 */
 export const screenModeC: AppGroup[] = [
   {
     id: 'sc-control',
     title: '参观大屏控制端',
     tone: 'blue',
-    cols: 1,
+    cols: 2,
     apps: [
       { id: 'sc1', name: '安全', icon: 'monitorCog', tone: 'blue' },
       { id: 'sc2', name: '通行', icon: 'truck', tone: 'teal' },
@@ -324,7 +324,7 @@ export const screenModeC: AppGroup[] = [
     id: 'sc-manage',
     title: '参观大屏管理端',
     tone: 'royal',
-    cols: 1,
+    cols: 2,
     apps: [
       { id: 'sc7', name: '策略管理', icon: 'clipboard', tone: 'blue' },
       { id: 'sc8', name: '视频通道同步', icon: 'monitorPlay', tone: 'teal' },
@@ -337,7 +337,7 @@ export const screenModeC: AppGroup[] = [
     id: 'sc-show',
     title: '参观大屏展示端',
     tone: 'green',
-    cols: 1,
+    cols: 2,
     apps: [
       { id: 'sc12', name: '参观大屏展示端', icon: 'monitor', tone: 'blue' },
       { id: 'sc13', name: 'PAD展示端', icon: 'presentation', tone: 'teal' }

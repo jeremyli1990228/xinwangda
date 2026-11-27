@@ -14,6 +14,8 @@ const buildDefaultSelection = (): Selection => {
   appCategories.forEach((c) => {
     map[c.id] = c.pages.flatMap((p) => p.groups.flatMap((g) => g.apps.map((a) => a.id)))
   })
+  // 运营大屏 C 端参考模式的应用单独归档，默认全部可用
+  map.screen = [...(map.screen ?? []), ...screenModeC.flatMap((g) => g.apps.map((a) => a.id))]
   return map
 }
 
@@ -70,6 +72,7 @@ function GroupCard({ group, useArea }: { group: AppGroup; useArea: boolean }) {
 
 export default function MyApps() {
   const [catId, setCatId] = useState('biz')
+  const [mode, setMode] = useState<'b' | 'c'>('b')
   const [page, setPage] = useState(0)
   const [configOpen, setConfigOpen] = useState(false)
   const [defaults] = useState<Selection>(buildDefaultSelection)
@@ -85,23 +88,31 @@ export default function MyApps() {
   )
 
   const pages = useMemo<AppPage[]>(() => {
+    const picked = selection[category.id] ?? []
+    const keepApps = (g: AppGroup) => ({ ...g, apps: g.apps.filter((a) => picked.includes(a.id)) })
+
+    // 运营大屏：B 端管理模式与 C 端参考模式各自独立成页，避免混排
+    if (category.id === 'screen') {
+      if (mode === 'b') {
+        return category.pages
+          .map((p) => ({ ...p, groups: p.groups.map(keepApps).filter((g) => g.apps.length > 0) }))
+          .filter((p) => p.groups.length > 0)
+      }
+      const groups = screenModeC.map(keepApps).filter((g) => g.apps.length > 0)
+      return groups.length > 0 ? [{ id: 'screen-c', layout: 'grid', groups }] : []
+    }
+
     if (!custom) return category.pages
     const base = category.pages.flatMap((p) => p.groups)
-    const groups = category.id === 'screen' ? [...base, ...screenModeC] : base
-    const picked = groups
-      .map((g) => ({
-        ...g,
-        apps: g.apps.filter((a) => (selection[category.id] ?? []).includes(a.id))
-      }))
-      .filter((g) => g.apps.length > 0)
+    const groups = base.map(keepApps).filter((g) => g.apps.length > 0)
 
     // 按 6 个框一页重新分页，超过 6 个才出现左右翻页
     const out: AppPage[] = []
-    for (let i = 0; i < picked.length; i += 6) {
-      out.push({ id: `${category.id}-custom-${i / 6}`, layout: 'grid', groups: picked.slice(i, i + 6) })
+    for (let i = 0; i < groups.length; i += 6) {
+      out.push({ id: `${category.id}-custom-${i / 6}`, layout: 'grid', groups: groups.slice(i, i + 6) })
     }
     return out
-  }, [category, custom, selection])
+  }, [category, custom, selection, mode])
 
   const total = pages.length
   const current = Math.min(page, Math.max(total - 1, 0))
@@ -116,10 +127,34 @@ export default function MyApps() {
       watermark={LayoutGrid}
       className="apps-panel"
       extra={
-        <button className="apps-add" title="管理我的应用" onClick={() => setConfigOpen(true)}>
-          <Settings2 size={14} strokeWidth={1.9} />
-          <span>管理</span>
-        </button>
+        <>
+          {category.id === 'screen' && (
+            <div className="mode-switch" role="group" aria-label="运营大屏模式">
+              <button
+                className={`mode-switch__item${mode === 'b' ? ' is-active' : ''}`}
+                onClick={() => {
+                  setMode('b')
+                  setPage(0)
+                }}
+              >
+                B端管理模式
+              </button>
+              <button
+                className={`mode-switch__item${mode === 'c' ? ' is-active' : ''}`}
+                onClick={() => {
+                  setMode('c')
+                  setPage(0)
+                }}
+              >
+                C端参考模式
+              </button>
+            </div>
+          )}
+          <button className="apps-add" title="管理我的应用" onClick={() => setConfigOpen(true)}>
+            <Settings2 size={14} strokeWidth={1.9} />
+            <span>管理</span>
+          </button>
+        </>
       }
     >
       <div className="apps-body">
@@ -145,7 +180,12 @@ export default function MyApps() {
             <div className="apps-viewport">
               <div className="apps-track" style={{ transform: `translateX(-${current * 100}%)` }}>
                 {pages.map((p) => (
-                  <div className={`apps-page apps-page--${p.layout}`} key={p.id}>
+                  <div
+                    className={`apps-page apps-page--${p.layout}${
+                      p.groups.length > 1 && p.groups.length <= 3 ? ' is-single-row' : ''
+                    }`}
+                    key={p.id}
+                  >
                     {p.layout === 'mosaic' ? (
                       <div className="apps-mosaic">
                         {p.groups.map((g) => (

@@ -73,7 +73,7 @@ export default function AppsConfig({ selection, onClose, onConfirm }: Props) {
               B端管理模式
             </button>
             <button className={mode === 'c' ? 'is-active' : ''} onClick={() => setMode('c')}>
-              C端参观模式
+              C端参考模式
             </button>
           </div>
         )}

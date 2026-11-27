@@ -217,6 +217,18 @@ html[data-ver='v2'] .apps-add:hover {
   background: #e6efff;
 }
 
+/* 运营大屏 B 端 / C 端模式切换 */
+html[data-ver='v2'] .mode-switch {
+  border-color: #e2ecff;
+  background: #eef4ff;
+}
+
+html[data-ver='v2'] .mode-switch__item.is-active {
+  background: linear-gradient(135deg, #3b82f6, #2f6df2);
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(47, 109, 242, 0.28);
+}
+
 /* ---------------- 我的应用 ---------------- */
 html[data-ver='v2'] .apps-body {
   flex-direction: column;
@@ -289,6 +301,11 @@ html[data-ver='v2'] .apps-page--grid {
 /* 单分组页：V2 让卡片横向铺满内容区，避免右侧大片留白 */
 html[data-ver='v2'] .apps-page--grid .app-group:only-child {
   grid-column: 1 / -1;
+}
+
+/* 2~3 个分组（运营大屏 C 端参考模式）：单行铺满 */
+html[data-ver='v2'] .apps-page--grid.is-single-row {
+  grid-template-rows: minmax(0, 1fr);
 }
 
 html[data-ver='v2'] .apps-page--grid .app-group:only-child .app-group__grid {

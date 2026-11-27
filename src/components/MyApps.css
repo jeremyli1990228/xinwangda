@@ -37,6 +37,40 @@
   color: var(--brand);
 }
 
+/* 「运营大屏」B 端 / C 端模式切换 */
+.mode-switch {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+  border: 1px solid #e8eefb;
+  border-radius: 999px;
+  background: #f1f5fd;
+}
+
+.mode-switch__item {
+  height: 22px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #7c8798;
+  font-size: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.16s;
+}
+
+.mode-switch__item:hover {
+  color: var(--brand);
+}
+
+.mode-switch__item.is-active {
+  background: #fff;
+  color: var(--brand);
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(31, 63, 128, 0.12);
+}
+
 .apps-empty {
   flex: 1;
   display: grid;
@@ -167,6 +201,11 @@
   align-content: start;
   padding: 18px 14px 10px;
   container-type: size;
+}
+
+/* 2~3 个分组（运营大屏 C 端参考模式）：单行铺满，卡片与 B 端同尺寸 */
+.apps-page--grid.is-single-row {
+  grid-template-rows: minmax(0, 1fr);
 }
 
 /* 分组卡片 */

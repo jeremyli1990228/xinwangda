@@ -60,7 +60,7 @@ dd {
   max-width: 2200px;
   margin: 0 auto;
   /* 底部「动态信息」与右栏「今日统计」共用的高度 */
-  --v1-news-h: clamp(240px, 40vh, 360px);
+  --v1-news-h: clamp(166px, 26vh, 268px);
 }
 
 .col-left {
@@ -92,6 +92,16 @@ dd {
 .col-right--two > .stats-panel {
   flex: 0 0 auto;
   height: var(--v1-news-h);
+}
+
+/* 统计面板与动态信息等高后，环图按可用高度收敛，避免内容超出面板 */
+.col-right--two > .stats-panel .ring {
+  width: clamp(64px, 9.2vh, 116px);
+  height: clamp(64px, 9.2vh, 116px);
+}
+
+.col-right--two > .stats-panel .stats-body {
+  padding-bottom: 2px;
 }
 
 .col-left > .apps-panel {

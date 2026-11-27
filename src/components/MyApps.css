@@ -190,12 +190,12 @@
 /* 马赛克内尺寸以容器高度为基准，保证压缩后分组不重叠 */
 .apps-page--mosaic .app-group,
 .apps-page--grid .app-group {
-  --ico-lg: clamp(34px, 9.2cqh, 72px);
+  --ico-lg: clamp(30px, 9.2cqh, 72px);
   --ico-flat: clamp(24px, 7.2cqh, 66px);
   --ico-sm: clamp(20px, 7.2cqh, 42px);
   --name-lg: clamp(10px, 2.6cqh, 18px);
   --name-sm: clamp(8px, 2.05cqh, 11px);
-  --grp-pt: clamp(14px, 4.8cqh, 26px);
+  --grp-pt: clamp(10px, 4.8cqh, 26px);
   --item-gap: clamp(4px, 1.6cqh, 12px);
   --row-gap: clamp(4px, 1.9cqh, 12px);
 }

@@ -91,3 +91,19 @@
   color: #6b7686;
   margin-left: 2px;
 }
+
+.stat-cell__nums.stat-link {
+  padding: 2px 5px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 0.16s;
+}
+
+.stat-cell__nums.stat-link:hover {
+  background: #eef4ff;
+}
+
+.stat-cell__nums.stat-link:hover span,
+.stat-cell__nums.stat-link:hover i {
+  color: var(--brand);
+}

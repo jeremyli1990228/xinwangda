@@ -1,47 +1,24 @@
 import { useState } from 'react'
 import { Bell, BellOff, Siren } from 'lucide-react'
 import Panel from './Panel'
-import { noticeItems, noticeTabs, type NoticeItem, type NoticeType } from '../data/notices'
+import { noticeTabs, type NoticeType } from '../data/notices'
+import { useData } from '../ui/DataStore'
 import { useUi } from '../ui/UiProvider'
 import './NoticePanel.css'
 
-const typeLabel: Record<NoticeType, string> = {
-  alert: '告警通知',
-  remind: '提醒通知',
-  inspect: '巡检通知',
-  workorder: '工单通知'
-}
-
 export default function NoticePanel() {
   const [tab, setTab] = useState<NoticeType>('alert')
-  const [items, setItems] = useState<NoticeItem[]>(noticeItems)
-  const { openDetail, notify } = useUi()
+  const { notices } = useData()
+  const { navigate } = useUi()
 
-  const list = items.filter((i) => i.type === tab)
-  const counts = noticeTabs.reduce<Record<NoticeType, number>>((acc, t) => {
-    acc[t.id] = items.filter((i) => i.type === t.id).length
-    return acc
-  }, { alert: 0, remind: 0, inspect: 0, workorder: 0 })
-
-  const open = (n: NoticeItem) => {
-    openDetail({
-      title: n.title,
-      subtitle: `接收时间：${n.time}`,
-      tag: typeLabel[n.type],
-      body: n.content,
-      meta: [
-        { label: '通知类型', value: typeLabel[n.type] },
-        { label: '接收时间', value: n.time },
-        { label: '处理状态', value: n.unread ? '未读' : '已读' },
-        { label: '推送渠道', value: '平台消息 / 移动端' }
-      ],
-      actionLabel: n.unread ? '标记已读' : undefined,
-      onAction: () => {
-        setItems((prev) => prev.map((it) => (it.id === n.id ? { ...it, unread: false } : it)))
-        notify('该通知已标记为已读')
-      }
-    })
-  }
+  const list = notices.filter((n) => n.type === tab)
+  const counts = noticeTabs.reduce<Record<NoticeType, number>>(
+    (acc, t) => {
+      acc[t.id] = notices.filter((n) => n.type === t.id).length
+      return acc
+    },
+    { alert: 0, remind: 0, inspect: 0, workorder: 0 }
+  )
 
   return (
     <Panel
@@ -49,7 +26,7 @@ export default function NoticePanel() {
       watermark={Bell}
       className="notice-panel"
       extra={
-        <button className="panel-more" onClick={() => notify('正在打开全部通知…')}>
+        <button className="panel-more" onClick={() => navigate({ name: 'noticeList' })}>
           更多
         </button>
       }
@@ -78,7 +55,7 @@ export default function NoticePanel() {
           <button
             key={n.id}
             className={`notice-item${n.unread ? '' : ' is-read'}`}
-            onClick={() => open(n)}
+            onClick={() => navigate({ name: 'noticeDetail', id: n.id })}
           >
             <span className="notice-item__ico">
               <Siren size={22} strokeWidth={2} />

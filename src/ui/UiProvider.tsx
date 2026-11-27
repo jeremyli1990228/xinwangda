@@ -12,16 +12,30 @@ export interface DetailPayload {
   onAction?: () => void
 }
 
+export type TodoTabId = 'all' | 'alert' | 'workorder' | 'audit'
+
+export type ViewState =
+  | { name: 'noticeList' }
+  | { name: 'noticeDetail'; id: string }
+  | { name: 'todoList'; tab: TodoTabId }
+  | { name: 'todoDetail'; id: string }
+
 interface UiApi {
   notify: (msg: string) => void
   openDetail: (detail: DetailPayload) => void
   closeDetail: () => void
+  view: ViewState | null
+  navigate: (view: ViewState) => void
+  closeView: () => void
 }
 
 const UiContext = createContext<UiApi>({
   notify: () => undefined,
   openDetail: () => undefined,
-  closeDetail: () => undefined
+  closeDetail: () => undefined,
+  view: null,
+  navigate: () => undefined,
+  closeView: () => undefined
 })
 
 export const useUi = () => useContext(UiContext)
@@ -29,6 +43,7 @@ export const useUi = () => useContext(UiContext)
 export function UiProvider({ children }: { children: ReactNode }) {
   const [toast, setToast] = useState<{ id: number; msg: string } | null>(null)
   const [detail, setDetail] = useState<DetailPayload | null>(null)
+  const [view, setView] = useState<ViewState | null>(null)
   const timer = useRef<number>()
 
   const notify = useCallback((msg: string) => {
@@ -40,6 +55,12 @@ export function UiProvider({ children }: { children: ReactNode }) {
   const openDetail = useCallback((d: DetailPayload) => setDetail(d), [])
   const closeDetail = useCallback(() => setDetail(null), [])
 
+  const navigate = useCallback((next: ViewState) => {
+    setDetail(null)
+    setView(next)
+  }, [])
+  const closeView = useCallback(() => setView(null), [])
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setDetail(null)
@@ -49,7 +70,7 @@ export function UiProvider({ children }: { children: ReactNode }) {
   }, [])
 
   return (
-    <UiContext.Provider value={{ notify, openDetail, closeDetail }}>
+    <UiContext.Provider value={{ notify, openDetail, closeDetail, view, navigate, closeView }}>
       {children}
 
       {toast && (

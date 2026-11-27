@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { ClipboardCheck } from 'lucide-react'
 import Panel from './Panel'
-import { todoItems, todoTabs, type TodoItem, type TodoType } from '../data/todos'
+import { todoTabs } from '../data/todos'
+import { useData } from '../ui/DataStore'
 import { useUi } from '../ui/UiProvider'
 import './TodoPanel.css'
 
@@ -14,11 +15,11 @@ const fmt = (sec: number) => {
 }
 
 export default function TodoPanel() {
-  const [tab, setTab] = useState<'all' | TodoType>('all')
-  const [items, setItems] = useState<TodoItem[]>(todoItems)
+  const [tab, setTab] = useState<'all' | 'alert' | 'workorder' | 'audit'>('all')
   const [, setTick] = useState(0)
   const startRef = useRef(Date.now())
-  const { openDetail, notify } = useUi()
+  const { todos } = useData()
+  const { navigate, notify } = useUi()
 
   useEffect(() => {
     const timer = window.setInterval(() => setTick((t) => t + 1), 1000)
@@ -26,27 +27,14 @@ export default function TodoPanel() {
   }, [])
 
   const elapsed = Math.floor((Date.now() - startRef.current) / 1000)
-  const list = tab === 'all' ? items : items.filter((i) => i.type === tab)
+  const list = tab === 'all' ? todos : todos.filter((i) => i.type === tab)
 
-  const open = (t: TodoItem) => {
-    const remain = (t.remainSeconds ?? 0) - elapsed
-    openDetail({
-      title: t.title,
-      subtitle: `${t.timeLabel} ${t.time} · 处置时限 ${t.limit}`,
-      tag: t.level,
-      body: t.desc,
-      meta: [
-        { label: '当前状态', value: t.status },
-        { label: t.timeLabel, value: t.time },
-        { label: '处置时限', value: t.limit },
-        { label: '剩余时间', value: remain > 0 ? fmt(remain) : '已超时' }
-      ],
-      actionLabel: '立即处置',
-      onAction: () => {
-        setItems((prev) => prev.filter((it) => it.id !== t.id))
-        notify('已受理，正在生成处置记录…')
-      }
-    })
+  const open = (id: string, type: string) => {
+    if (type === 'workorder') {
+      notify('工单待办详情暂未开放')
+      return
+    }
+    navigate({ name: 'todoDetail', id })
   }
 
   return (
@@ -55,7 +43,7 @@ export default function TodoPanel() {
       watermark={ClipboardCheck}
       className="todo-panel"
       extra={
-        <button className="panel-more" onClick={() => notify('正在打开全部待办…')}>
+        <button className="panel-more" onClick={() => navigate({ name: 'todoList', tab: 'all' })}>
           更多
         </button>
       }
@@ -78,7 +66,7 @@ export default function TodoPanel() {
         {list.map((t) => {
           const remain = (t.remainSeconds ?? 0) - elapsed
           return (
-            <button className="todo-item" key={t.id} onClick={() => open(t)}>
+            <button className="todo-item" key={t.id} onClick={() => open(t.id, t.type)}>
               <span className="todo-item__row">
                 <em className={`pill ${t.level === '紧急' ? 'pill--red' : t.level === '重要' ? 'pill--warn' : 'pill--gray'}`}>
                   {t.level}

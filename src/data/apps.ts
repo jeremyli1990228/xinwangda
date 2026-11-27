@@ -272,7 +272,7 @@ const iotPage: AppPage = {
       id: 'iot-all',
       title: '物联中心',
       tone: 'blue',
-      cols: 2,
+      cols: 3,
       apps: [
         { id: 'i1', name: '首页', icon: 'monitor', tone: 'blue' },
         { id: 'i2', name: '设备管理', icon: 'server', tone: 'teal' },

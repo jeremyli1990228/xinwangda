@@ -462,13 +462,7 @@
   }
 }
 
-/* 单分组页：卡片纵向占满两行，标签收进卡片内部，避免内容溢出边框 */
+/* 单分组页：卡片纵向占满两行，保持标签在边框上沿的悬浮样式 */
 .apps-page--grid .app-group:only-child {
   grid-row: 1 / -1;
-  padding-top: 42px;
-}
-
-.apps-page--grid .app-group:only-child .app-group__label {
-  top: 13px;
-  left: 12px;
 }

@@ -28,6 +28,7 @@
 
 .apps-config__tabs {
   display: flex;
+  align-items: center;
   gap: 22px;
   padding: 18px 20px 0;
 }
@@ -204,4 +205,97 @@
 
 .apps-config__confirm:hover {
   background: #2a5ede;
+}
+
+/* ---------- 图标化全选控件（无文字，节省空间） ---------- */
+.apps-box {
+  display: grid;
+  place-items: center;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #b9cdee;
+  border-radius: 4px;
+  background: #fff;
+  color: #fff;
+  transition: all 0.14s;
+}
+
+.apps-box.is-part {
+  border-color: #2f6df2;
+  background: #eaf2ff;
+}
+
+.apps-box.is-part::after {
+  content: '';
+  width: 7px;
+  height: 2px;
+  border-radius: 1px;
+  background: #2f6df2;
+}
+
+.apps-box.is-all {
+  border-color: #2f6df2;
+  background: #2f6df2;
+}
+
+/* 区域表头的「本区域全选」 */
+.apps-col__head {
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.apps-col__title {
+  flex: 1;
+  min-width: 0;
+}
+
+.apps-col__all {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.14s;
+}
+
+.apps-col__all:hover {
+  background: rgba(47, 109, 242, 0.12);
+}
+
+.apps-col__all:hover .apps-box {
+  border-color: #2f6df2;
+}
+
+/* 分类维度的「批量全选」 */
+.apps-config__all {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 11px;
+  border: 1px solid #dfeafc;
+  border-radius: 17px;
+  background: #f5f9ff;
+  cursor: pointer;
+  transition: all 0.14s;
+}
+
+.apps-config__all:hover {
+  border-color: #b9d3ff;
+  background: #eef4ff;
+}
+
+.apps-config__all .apps-box {
+  width: 16px;
+  height: 16px;
+  border-radius: 5px;
+}
+
+.apps-config__all.is-all .apps-box {
+  box-shadow: 0 2px 6px rgba(47, 109, 242, 0.3);
 }

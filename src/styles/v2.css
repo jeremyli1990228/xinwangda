@@ -1214,6 +1214,45 @@ html[data-ver='v2'] .apps-config__confirm {
   box-shadow: 0 8px 18px rgba(37, 99, 235, 0.32);
 }
 
+/* 图标化全选控件（深色） */
+html[data-ver='v2'] .apps-box {
+  border-color: rgba(120, 160, 230, 0.45);
+  background: rgba(255, 255, 255, 0.06);
+  color: #06131f;
+}
+
+html[data-ver='v2'] .apps-box.is-part {
+  border-color: #22d3ee;
+  background: rgba(34, 211, 238, 0.16);
+}
+
+html[data-ver='v2'] .apps-box.is-part::after {
+  background: #67e8f9;
+}
+
+html[data-ver='v2'] .apps-box.is-all {
+  border-color: #22d3ee;
+  background: #22d3ee;
+}
+
+html[data-ver='v2'] .apps-col__all:hover {
+  background: rgba(56, 189, 248, 0.16);
+}
+
+html[data-ver='v2'] .apps-col__all:hover .apps-box {
+  border-color: #22d3ee;
+}
+
+html[data-ver='v2'] .apps-config__all {
+  border-color: rgba(120, 160, 230, 0.2);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+html[data-ver='v2'] .apps-config__all:hover {
+  border-color: rgba(56, 189, 248, 0.45);
+  background: rgba(56, 189, 248, 0.1);
+}
+
 /* ---------------- 通知 / 待办全屏页 ---------------- */
 html[data-ver='v2'] .page-view {
   background:

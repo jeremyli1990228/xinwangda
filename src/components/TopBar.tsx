@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { BellRing, ChevronDown, House, Sparkles } from 'lucide-react'
+import { ChevronDown, House, Sparkles } from 'lucide-react'
 import { useUi } from '../ui/UiProvider'
 import AlertView from './AlertView'
 import './TopBar.css'
@@ -105,8 +105,7 @@ export default function TopBar() {
 
         {version === 'v1' && (
           <button className="tb-alert" title="预警信息" onClick={() => setAlertOpen(true)}>
-            <BellRing size={15} strokeWidth={2} />
-            <i className="tb-alert__dot" />
+            <img className="tb-alert__ico" src="alert-icon.png" alt="预警信息" />
           </button>
         )}
 

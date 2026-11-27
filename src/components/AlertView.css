@@ -401,15 +401,11 @@ input.alert-ctl:focus {
   background: rgba(255, 255, 255, 0.26);
 }
 
-.tb-alert__dot {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #ff4d4f;
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.35);
+.tb-alert__ico {
+  width: 21px;
+  height: 21px;
+  object-fit: contain;
+  display: block;
 }
 
 @media (max-width: 1200px) {

@@ -59,6 +59,8 @@ dd {
   overflow: hidden;
   max-width: 2200px;
   margin: 0 auto;
+  /* 底部「动态信息」与右栏「今日统计」共用的高度 */
+  --v1-news-h: clamp(240px, 40vh, 360px);
 }
 
 .col-left {
@@ -80,9 +82,26 @@ dd {
   gap: var(--gap);
 }
 
-/* V1 右栏去掉「我的通知」后，待办与统计上下等分 */
-.col-right--two > .panel {
+/* V1 右栏：去掉「我的通知」后，我的待办占剩余高度，
+   「今日统计」与左栏「动态信息」强制等高（两者共用 --v1-news-h） */
+.col-right--two > .todo-panel {
   flex: 1 1 0;
+  min-height: 0;
+}
+
+.col-right--two > .stats-panel {
+  flex: 0 0 auto;
+  height: var(--v1-news-h);
+}
+
+.col-left > .apps-panel {
+  flex: 1 1 0;
+  min-height: 0;
+}
+
+.col-left > .news-panel {
+  flex: 0 0 auto;
+  height: var(--v1-news-h);
 }
 
 /* 741~820 高度（如 1366×768 笔记本）：压缩顶栏与留白，保证一屏完整 */

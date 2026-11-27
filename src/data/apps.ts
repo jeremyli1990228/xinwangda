@@ -249,7 +249,7 @@ const bizPage2: AppPage = {
       id: 'g-face',
       title: '人脸识别',
       tone: 'blue',
-      cols: 4,
+      cols: 3,
       apps: [
         { id: 'h1', name: '通行概览', icon: 'chart', tone: 'blue' },
         { id: 'h2', name: '识别记录', icon: 'camera', tone: 'teal' },
@@ -272,7 +272,7 @@ const iotPage: AppPage = {
       id: 'iot-all',
       title: '物联中心',
       tone: 'blue',
-      cols: 4,
+      cols: 2,
       apps: [
         { id: 'i1', name: '首页', icon: 'monitor', tone: 'blue' },
         { id: 'i2', name: '设备管理', icon: 'server', tone: 'teal' },

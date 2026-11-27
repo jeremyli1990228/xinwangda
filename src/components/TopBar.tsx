@@ -58,28 +58,30 @@ export default function TopBar() {
       </nav>
 
       <div className="topbar__right">
-        <div className="park-select" onClick={() => setMenu(menu === 'park' ? null : 'park')}>
+        <div className="park-wrap">
           <span className="park-select__label">当前园区：</span>
-          <span>{park}</span>
-          <ChevronDown size={13} />
-          {menu === 'park' && (
-            <ul className="dropdown">
-              {parks.map((p) => (
-                <li
-                  key={p}
-                  className={p === park ? 'is-active' : ''}
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    setPark(p)
-                    setMenu(null)
-                    notify(`已切换至「${p}」`)
-                  }}
-                >
-                  {p}
-                </li>
-              ))}
-            </ul>
-          )}
+          <div className="park-select" onClick={() => setMenu(menu === 'park' ? null : 'park')}>
+            <span>{park}</span>
+            <ChevronDown size={13} />
+            {menu === 'park' && (
+              <ul className="dropdown">
+                {parks.map((p) => (
+                  <li
+                    key={p}
+                    className={p === park ? 'is-active' : ''}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setPark(p)
+                      setMenu(null)
+                      notify(`已切换至「${p}」`)
+                    }}
+                  >
+                    {p}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
         </div>
 
         <span className="tb-date">2026年11月27日</span>

@@ -14,7 +14,7 @@ const navs = [
 const parks = ['总部智慧园区', '石龙仔园区', '龙华园区', '惠州博罗园区', '南京溧水园区']
 
 export default function TopBar() {
-  const { notify, toggleVersion, version } = useUi()
+  const { notify, toggleVersion } = useUi()
   const [active, setActive] = useState('biz')
   const [park, setPark] = useState(parks[0])
   const [menu, setMenu] = useState<null | 'park' | 'user'>(null)
@@ -103,11 +103,10 @@ export default function TopBar() {
         <span className="tb-week">星期五</span>
         <span className="tb-lunar">农历十九</span>
 
-        {version === 'v1' && (
-          <button className="tb-alert" title="预警信息" onClick={() => setAlertOpen(true)}>
-            <img className="tb-alert__ico" src="alert-icon.png" alt="预警信息" />
-          </button>
-        )}
+        <button className="tb-alert" title="预警信息" onClick={() => setAlertOpen(true)}>
+          <img className="tb-alert__ico" src="alert-icon.png" alt="预警信息" />
+          <i className="tb-alert__dot" />
+        </button>
 
         <div className="user" onClick={() => setMenu(menu === 'user' ? null : 'user')}>
           <span className="avatar">管</span>
@@ -131,7 +130,7 @@ export default function TopBar() {
         </div>
       </div>
 
-      {version === 'v1' && alertOpen && <AlertView open onClose={() => setAlertOpen(false)} />}
+      {alertOpen && <AlertView open onClose={() => setAlertOpen(false)} />}
     </header>
   )
 }

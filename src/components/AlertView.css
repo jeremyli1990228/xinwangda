@@ -380,7 +380,7 @@ input.alert-ctl:focus {
   color: #2f6df2;
 }
 
-/* 顶栏预警入口：仅图标，外层无圆弧边框 */
+/* 顶栏预警入口：裸图标（无边框、无底色），仅保留红点角标 */
 .tb-alert {
   position: relative;
   flex: none;
@@ -399,7 +399,7 @@ input.alert-ctl:focus {
 
 .tb-alert:hover {
   transform: translateY(-1px);
-  filter: drop-shadow(0 3px 8px rgba(255, 96, 80, 0.55));
+  filter: drop-shadow(0 3px 8px rgba(255, 96, 80, 0.5));
 }
 
 .tb-alert__ico {
@@ -407,6 +407,17 @@ input.alert-ctl:focus {
   height: 22px;
   object-fit: contain;
   display: block;
+}
+
+.tb-alert__dot {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff4d4f;
+  box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.55);
 }
 
 @media (max-width: 1200px) {
